@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Adaptability on Meta - Smart Search</title>
+    <link>https://www.meta.sc/tags/adaptability/</link>
+    <description>Recent content in Adaptability on Meta - Smart Search</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 17 Jun 2015 12:44:18 -0400</lastBuildDate>
+    <atom:link href="https://www.meta.sc/tags/adaptability/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Jack of All Trades</title>
+      <link>https://www.meta.sc/careers/all/</link>
+      <pubDate>Wed, 17 Jun 2015 12:44:18 -0400</pubDate>
+      
+      <guid>https://www.meta.sc/careers/all/</guid>
+      <description>&lt;p&gt;You may not see the perfect fit in our existing job descriptions, but you love our concept and want to be involved. You are excited about revolutionizing the way people interact with their files. Meta offers challenges in user experience design, marketing, consumer behavior, and nearly every area of software engineering. If you think you would be a good fit, we can’t wait to hear from you!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

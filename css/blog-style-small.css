@@ -1,0 +1,83 @@
+
+/* Basic */
+
+#joinbeta {
+    margin-left: 7px !important;
+}
+
+.navContainer {
+    margin-right: 0em;
+    margin-left: 0em;
+}
+
+h2 {
+    font-size: 1.35em;
+}
+/* Main */
+
+.main .container {
+    padding: 3em 1.5em 1em 1.5em;
+}
+
+.main .container .image.primary:first-child {
+    margin: -1.5em 0 2.5em 0;
+}
+
+.main .goto-next {
+    display: none;
+}
+/* Header */
+
+#header {
+    height: 80vh;
+}
+
+#header:after {
+    height: 80vh;
+}
+
+#header header {
+    padding-bottom: 0;
+}
+
+#header header h1 {
+    font-size: 2em;
+}
+
+#header header p {
+    margin-top: 1em;
+}
+
+#header .container {
+    display: none;
+}
+/* Footer */
+
+#footer .container {
+    padding: 3em 1.5em 1em 1.5em;
+}
+
+/* Box */
+
+.box {
+    padding: 3em 2em;
+}
+
+.box.features > section {
+    padding: 3em 2em;
+}
+
+.box .image.featured {
+    margin-left: -2em;
+    width: calc(100% + 4em);
+}
+
+.box .image.featured:first-child {
+    margin-bottom: 3em;
+    margin-top: -3em;
+}
+
+.box .image.featured:last-child {
+    margin-bottom: -3em;
+    margin-top: 3em;
+}

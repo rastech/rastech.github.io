@@ -1,0 +1,18 @@
+
+
+/* Custom -------------------------------------------------------------------------------------------------*/
+
+.navContainer {
+/* This is a hack... Couldn't figure out why the navbars weren't aligning---------------------*/
+    margin-right: 7.4em !important;
+    margin-left: 7.4em !important;
+}
+
+/* Basic -------------------------------------------------------------------------------------------------*/
+
+body,
+input,
+select,
+textarea {
+    font-size: 11pt;
+}

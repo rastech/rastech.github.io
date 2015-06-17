@@ -1,2 +1,2 @@
-# rastech.github.io
-Meta Website
+# Meta Website
+statically hosted and generated with hugo

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javascript on Meta - Smart Search</title>
+    <link>https://www.meta.sc/tags/javascript/</link>
+    <description>Recent content in Javascript on Meta - Smart Search</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 17 Jun 2015 12:43:51 -0400</lastBuildDate>
+    <atom:link href="https://www.meta.sc/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Front End Engineer</title>
+      <link>https://www.meta.sc/careers/frontend/</link>
+      <pubDate>Wed, 17 Jun 2015 12:43:51 -0400</pubDate>
+      
+      <guid>https://www.meta.sc/careers/frontend/</guid>
+      <description>&lt;p&gt;You write fast, beautiful JavaScript to create simple and powerful user experiences. You translate visual designs into fully working web pages, and edit the HTML, CSS, and Javascript for existing page templates. You build and work with high-performance, reusable code for UI components and your work is always modular and scaleable.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
