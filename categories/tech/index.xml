@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tech on Meta - Smarter Search</title>
-    <link>https://meta.sc/categories/tech/</link>
+    <link>http://localhost:1313/categories/tech/</link>
     <description>Recent content in Tech on Meta - Smarter Search</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Meta</copyright>
     <lastBuildDate>Tue, 16 Jun 2015 09:38:02 -0400</lastBuildDate>
-    <atom:link href="https://meta.sc/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Facilitating Idiomatic Swift with Objective-C</title>
-      <link>https://meta.sc/blog/swiftobjc/</link>
+      <link>http://localhost:1313/blog/swiftobjc/</link>
       <pubDate>Tue, 16 Jun 2015 09:38:02 -0400</pubDate>
       
-      <guid>https://meta.sc/blog/swiftobjc/</guid>
+      <guid>http://localhost:1313/blog/swiftobjc/</guid>
       <description>
 
 &lt;h5 id=&#34;tl-dr-if-you-are-hitting-roadblocks-in-trying-to-communicate-with-core-foundation-and-c-apis-directly-from-swift-just-wrap-them-in-a-friendly-objective-c-class-that-provides-an-simple-api-for-the-rest-of-your-application-to-use:ed2493891a91270524d133e14b0956ee&#34;&gt;tl;dr If you are hitting roadblocks in trying to communicate with Core Foundation and C APIs directly from Swift, just wrap them in a friendly Objective-C class that provides an simple API for the rest of your application to use.&lt;/h5&gt;
