@@ -21,6 +21,234 @@
     </item>
     
     <item>
+      <title>Facilitating Idiomatic Swift with Objective-C</title>
+      <link>https://meta.sc/blog/swiftobjc/</link>
+      <pubDate>Tue, 16 Jun 2015 09:38:02 -0400</pubDate>
+      
+      <guid>https://meta.sc/blog/swiftobjc/</guid>
+      <description>
+
+&lt;h5 id=&#34;tl-dr-if-you-are-hitting-roadblocks-in-trying-to-communicate-with-core-foundation-and-c-apis-directly-from-swift-just-wrap-them-in-a-friendly-objective-c-class-that-provides-an-simple-api-for-the-rest-of-your-application-to-use:ed2493891a91270524d133e14b0956ee&#34;&gt;tl;dr If you are hitting roadblocks in trying to communicate with Core Foundation and C APIs directly from Swift, just wrap them in a friendly Objective-C class that provides an simple API for the rest of your application to use.&lt;/h5&gt;
+
+&lt;p&gt;At Meta, most of the work that goes into our client applications facilitates keeping our user’s files in sync with our cloud system so that they can be easily searched and accessed. A few months ago when we began work on the client application for Mac OS X, there were two major decisions that had to be made. The first was how to organize the application’s functionality in a way that facilitated having a resilient background process running to listen for filesystem changed and keep everything up to date. I’ll likely be discussing that in a future post. The second decision was what language to base the project in, which I will be discussing here.&lt;/p&gt;
+
+&lt;p&gt;Since I was to be the primary developer of this application for the short term, this was partly a personal choice. While most of my experience in Apple&amp;rsquo;s world to date had been in writing Objective-C code, I had experimented with Swift and was excited to try it out in a production application. The were a few features in particular that I was attracted to in Swift.&lt;/p&gt;
+
+&lt;p&gt;Swift&amp;rsquo;s concision was especially enticing on the surface level. The ability to express oneself quickly is a desirable feature in any language, and fewer lines of code written means fewer lines of code to maintain. Another area of interest was the type safety that Swift makes available through its data structures. Our system is largely event-based, with a set of complex data types passing information around about the state of a user&amp;rsquo;s files. In the backend, our use of Go and json marshalling into structs provides strong type safety in handling incoming data. Being able to work with similar guarantees on the client side is highly desirable. A third aspect that was appealing to me personally was the functional aspects of Swift. I really enjoy a functional style of programming when possible, and Swifts builtin functionality for &lt;code&gt;map&lt;/code&gt;, &lt;code&gt;reduce&lt;/code&gt;, &lt;code&gt;join&lt;/code&gt;, and the like were a great stimulus to try out the language in a production application.&lt;/p&gt;
+
+&lt;p&gt;Once the decision was made to use Swift as the primary language, development of the Mac applicaiton moved forward rapidly. Once the various components of the applicaiton were in place and structured, I began work on the meat of the application: handling changes to a user&amp;rsquo;s files. To interface with the file system on the level we required, much of the interaction occurs within the Core Foundation frameworks and in pure C code. As we tried to interface with these frameworks in Swift, a variety of issues came up, two of which I will showcase here.&lt;/p&gt;
+
+&lt;h3 id=&#34;interfacing-with-uttype:ed2493891a91270524d133e14b0956ee&#34;&gt;Interfacing with UTType&lt;/h3&gt;
+
+&lt;p&gt;Critical to analyzing a file&amp;rsquo;s content and displaying a meaningful description of a file to the user is knowing what kind of file you are dealing with. Cocoa&amp;rsquo;s &lt;a href=&#34;https://developer.apple.com/library/mac/documentation/MobileCoreServices/Reference/UTTypeRef/&#34;&gt;UTType&lt;/a&gt; functionality provides us with the ability to extrapolate a file&amp;rsquo;s MIME type for use in our cloud services.&lt;/p&gt;
+
+&lt;h4 id=&#34;swift:ed2493891a91270524d133e14b0956ee&#34;&gt;Swift&lt;/h4&gt;
+
+&lt;p&gt;In Swift, my best attempt at interfacing with UTType is as follows in the code snippet below. There are a few things going on here. There are two calls into the &lt;code&gt;UTType&lt;/code&gt; framework. The first requires a parameter of type &lt;code&gt;CFStringRef&lt;/code&gt;, which is easily created with a cast which utilized toll-free bridging behinds the scenes. The return value of this function is of type &lt;code&gt;Unmanaged&amp;lt;CFString&amp;gt;!&lt;/code&gt;, indicating that is an unannoted method where the memory management must be manually handled in Swift. The &lt;code&gt;takeRetainedValue()&lt;/code&gt; function indicates that the value returned by this function as already been retained and needs to be manually released when the current scope is exited, thus removing the &lt;code&gt;Unmanaged&amp;lt;&amp;gt;&lt;/code&gt; wrapper from the inner type. Additionally, the failure case is somewhat convoluted because it occurs when the &lt;code&gt;cfMimeType&lt;/code&gt; fails to bridge to a string, rather than expicitly from the return of the function call.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;// this code crashes at runtime
+public class func mimeTypeForFile(path: String) -&amp;gt; String {
+    let ext = path.pathExtension as CFStringRef
+    let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext, nil).takeRetainedValue()
+    
+    let cfMimeType = UTTypeCopyPreferredTagWithClass(UTI, kUTTagClassMIMEType).takeRetainedValue()
+    if let mimeType = cfMimeType as? String {
+        return mimeType
+    }
+    return &amp;quot;application/octet-stream&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once I got this code compiling, I wrote a short unit test. Unfortunately when this code is run the following error occurs, a dreaded &lt;code&gt;EXC_BAD_INSTRUCTION&lt;/code&gt; runtime error. It is certainly possible that this code could be further massaged to get this example working (please let me know if you are able to), but we haven&amp;rsquo;t been able to find a working solution.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://meta.sc/blog/images/snippets/swift_uttype.png&#34; alt=&#34;Swift UTType interfacing&#34; title=&#34;Optional title&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h4 id=&#34;objective-c:ed2493891a91270524d133e14b0956ee&#34;&gt;Objective-C&lt;/h4&gt;
+
+&lt;p&gt;Looking at the smae code in Objective-C, several things are more desirable. Firstly, this code works; usually a desirable attribute in production code. No bad instructions here. Secondly, coming from a background of Objective-C, what is hapening here is clearer than in the Swift code. Rather than dealing with wrappers on Core Foundation types meant to insulate Swift from pointers, you are dealing with the implementation direclty and the underlying interactons are much clearer. Since most developers writing Swift are coming from an Objective-C background, it is explicitly clear what this code is doing in regard to memory management and error handling.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-objectivec&#34;&gt;- (NSString*) mimeTypeForFile:(NSString*) path {
+    CFStringRef ext = (__bridge CFStringRef)[path pathExtension];
+    CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext, NULL);
+    CFStringRef mimeType = UTTypeCopyPreferredTagWithClass(UTI, kUTTagClassMIMEType);
+    CFRelease(UTI);
+    if (!mimeType) {
+        return @&amp;quot;application/octet-stream&amp;quot;;
+    }
+    return CFBridgingRelease(mimeType);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;file-system-events:ed2493891a91270524d133e14b0956ee&#34;&gt;File System Events&lt;/h3&gt;
+
+&lt;p&gt;Another area where we ran into issues was in our use of the &lt;a href=&#34;https://developer.apple.com/library/mac/documentation/Darwin/Conceptual/FSEvents_ProgGuide/Introduction/Introduction.html&#34;&gt;File System Events API&lt;/a&gt;, which provides a stream giving callbacks to your application when anything changes on the file system within the scope you have specified to listen within.&lt;/p&gt;
+
+&lt;p&gt;What follows is my best attempt to create File System Event stream in pure Swift. There is a lot of syntactic baggage surrounding pointer handling and Core Foundation types, but for the most part all that code should work just fine. The core issue we ran into is that a &lt;code&gt;CFuntionPointer&lt;/code&gt;, swift&amp;rsquo;s type which is analogous to a normal function pointer in pure C code, cannot be created from either a Swift function or a closure. This is a limiation of the Swift language (until the recent 2.0 release, more on that later). The following code fails to compile because of this limitation.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;// this code does not compile
+func testCreateSimpleSwiftListener() {
+    let cfDirs = [NSHomeDirectory()] as CFArray
+    let context = nil as UnsafeMutablePointer&amp;lt;FSEventStreamContext&amp;gt;
+    let latency = 3.0 as CFAbsoluteTime
+    let flags = kFSEventStreamCreateFlagFileEvents | kFSEventStreamCreateFlagWatchRoot
+    
+    let callback: @objc_block (
+    ConstFSEventStreamRef,
+    UnsafeMutablePointer&amp;lt;Void&amp;gt;,
+    Int,
+    UnsafeMutablePointer&amp;lt;Void&amp;gt;,
+    UnsafePointer&amp;lt;FSEventStreamEventFlags&amp;gt;,
+    UnsafePointer&amp;lt;FSEventStreamEventId&amp;gt;) -&amp;gt; Void = {
+        (streamRef, clientCallBackInfo, numEvents, eventPaths, eventFlags, eventIds) -&amp;gt; Void in
+        NSLog(&amp;quot;Received %i paths&amp;quot;, numEvents)
+        // handle file event
+    } as CFunctionPointer
+    
+    let stream = FSEventStreamCreate(
+        kCFAllocatorDefault,
+        callback as FSEventStreamCallback,
+        context,
+        cfDirs,
+        kFSEventStreamEventIdSinceNow,
+        latency,
+        flags
+    )
+    FSEventStreamScheduleWithRunLoop(stream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode)
+    FSEventStreamStart(stream)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is the code with the compiler errors shown.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://meta.sc/blog/images/snippets/swift_fsevents_func.png&#34; alt=&#34;Swift FSEvents interfacing&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Again, with some further massaging this &lt;a href=&#34;http://stackoverflow.com/questions/25514176/using-swift-cfunctionpointer-to-pass-a-callback-to-coremidi-api#answer-29375116&#34;&gt;might&lt;/a&gt; or &lt;a href=&#34;http://dev.eltima.com/post/97718928834/interacting-with-c-pointers-in-swift-part-3&#34;&gt;might not&lt;/a&gt; be possible by delving deeper into the Objective-C runtime, but in doing so we yet again loses out on the most of the benefits of working in Swift at all. Even with this function pointer issue fixed, the &lt;code&gt;UnsafeMutablePointer&amp;lt;Type&amp;gt;&lt;/code&gt; and &lt;code&gt;UnsafePointer&amp;lt;Type&amp;gt;&lt;/code&gt; wrappers are uncomfortable to work with and a jarring change from the kind of Swift code that I have come to enjoy writing.&lt;/p&gt;
+
+&lt;h3 id=&#34;reclaiming-the-benefits-of-swift:ed2493891a91270524d133e14b0956ee&#34;&gt;Reclaiming the benefits of Swift&lt;/h3&gt;
+
+&lt;p&gt;In the previous two examples, nearly all of the reasons that I chose Swift for this project in the first place have been eroded to some degree. With all the wrappers around low level objects, the concision present elsewhere in our codebase has mostly disappeared. Since we are using Core Foundation types, type safety within data structures has disappeared. Lastly, higher level language features can only be applied after these low level types have been sufficiently dealt with. It feel basically like writing C code with more verbose and unfamiliar syntax.&lt;/p&gt;
+
+&lt;p&gt;Ideally, when we are writing Swift we can focus on the benefits of the language, not how it interfaces with the very code it was meant to replace. The solution we ended up using here is to wrap interactions with Core Foundation and C APIs with simple Objective-C wrapper classes that provide a clean API for use by your Swift code. For us, this consisted primarily of two basic classes, &lt;code&gt;FileSystemListener&lt;/code&gt; and &lt;code&gt;FileSystemCrawler&lt;/code&gt;. The listener class is a wrapper around code dealing with the aforementioned &lt;a href=&#34;https://developer.apple.com/library/mac/documentation/Darwin/Conceptual/FSEvents_ProgGuide/Introduction/Introduction.html&#34;&gt;File System Events API&lt;/a&gt;, and the crawler wraps low level C code with interacts with the file system as efficiently as possible, enabling introspectable breadth-first crawls that can handle modifications to the file system while in progress.&lt;/p&gt;
+
+&lt;p&gt;By providing these interfaces, the rest of our Swift code can interact with a purpose built API that dovetails nicely into the business logic for feeding changes to our events streams in the cloud system, which is all written in Swift. Additionally, it helps to reinforce good design principles in the realm of code modularity and separation of concerns, making your application more maintainable and testable moving forward.&lt;/p&gt;
+
+&lt;h3 id=&#34;objective-c-and-swift:ed2493891a91270524d133e14b0956ee&#34;&gt;Objective-C and Swift&lt;/h3&gt;
+
+&lt;p&gt;Interop between Objective-C and Swift at a higher level is a much friendler affair, and most developers working in Swift probably have some experience in this area. Still, at the risk of just paraphrasing the documentation there were a few areas which were of particular interest to us that I would like to touch on. If this is an area where you are working particularly in-depth, I would recommend that you to consult Apple&amp;rsquo;s documentation on &lt;a href=&#34;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216-CH2-XID_0&#34;&gt;Using Swift with Cocoa and Objective-C&lt;/a&gt; directly for a much more thorough treatment of this topic.&lt;/p&gt;
+
+&lt;h4 id=&#34;bridging:ed2493891a91270524d133e14b0956ee&#34;&gt;Bridging&lt;/h4&gt;
+
+&lt;p&gt;The basis for interop between Objective-C and Swift is bridging between the two languages. Calling into Objective-C from Swift requires a bridging header to be inserted into your project, which Xcode will ususally prompt you for as shown below when an Objective-C file is added to a Swift project. This file is linked to your build settings in the &lt;strong&gt;Swift Compiler - Code Generation&lt;/strong&gt; section as the &lt;strong&gt;Objective-C Bridging Header&lt;/strong&gt;. This header file contains the header files of Objective-C code that you want to interact with. The Objective-C file that prompted its creation will be automatically added, and all subsequent files must be added manually.&lt;/p&gt;
+
+&lt;div align=&#34;center&#34;&gt;&lt;img src=&#34;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/Art/bridgingheader_2x.png&#34; width=&#34;400&#34;/&gt;&lt;/div&gt;
+
+&lt;h4 id=&#34;syntactic-translation:ed2493891a91270524d133e14b0956ee&#34;&gt;Syntactic Translation&lt;/h4&gt;
+
+&lt;p&gt;As &lt;a href=&#34;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-XID_25&#34;&gt;documented&lt;/a&gt;, the swift compiler performs translations of Objective-C syntax into Swift so that initializers, methods, and function calls can be performed natively from Swift code. Most of these conversions are fairly intuitive, and you have probably worked with soem example of these translations. The below example is a simplified version of a delegate of our &lt;code&gt;FileSystemListener&lt;/code&gt; class that wraps the FSEvents library using Objective-C.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-objc&#34;&gt;@protocol FileSystemListenerDelegate &amp;lt;NSObject&amp;gt;
+-(void)fileCreateEvent:(FSEventStreamEventId)eventID atPath:(NSString*)path withFlags:(FSEventStreamEventFlags)flags;
+-(void)fileModifyEvent:(FSEventStreamEventId)eventID atPath:(NSString*)path withFlags:(FSEventStreamEventFlags)flags;
+-(void)fileRemoveEvent:(FSEventStreamEventId)eventID atPath:(NSString*)path withFlags:(FSEventStreamEventFlags)flags
+@end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This stub of a Swift class demonstrates how the syntax translates between the two languages. Perhaps it is a bit more verbose than it could be, but perfectly understandable and functional. And of course, XCode&amp;rsquo;s autocomplete functionality will fill our the function for you as you type.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;class FileHandler: FileSystemListenerDelegate {
+    func fileCreateEvent(eventID: FSEventStreamEventId, atPath path: String!, withFlags flags: FSEventStreamEventFlags) {}
+    func fileModifyEvent(eventID: FSEventStreamEventId, atPath path: String!, withFlags flags: FSEventStreamEventFlags) {}
+    func fileRemoveEvent(eventID: FSEventStreamEventId, atPath path: String!, withFlags flags: FSEventStreamEventFlags) {}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;initializer-behavior:ed2493891a91270524d133e14b0956ee&#34;&gt;Initializer behavior&lt;/h5&gt;
+
+&lt;p&gt;One behavior to be cognizant of in this translation is the handling of Optional types from potentially failable Objective-C initializers. Since Objective-C does not have the concept of Optionals, the default translation is auto-unwrapped Types, indicated with a bang at the end of the type, e.g. &lt;code&gt;Type!&lt;/code&gt;. Some APIs are annotated to indicate whether or not the initialization can fail, either eschewing an Optional wrapper of giving a normal Optional. For those that are not, the way auto-unwrapped optionals work is that when it is accessed, the underlying value is implicitly unwrapped, causing a panic if the underlying value is in fact nil. Coming from an Objective-C background where we can happily send messages to &lt;code&gt;nil&lt;/code&gt; objects and move along, this is definitely something to watch out for. As usual, this behavior is &lt;a href=&#34;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-XID_27&#34;&gt;well documented&lt;/a&gt; within Apple&amp;rsquo;s treatment of the topic.&lt;/p&gt;
+
+&lt;h4 id=&#34;data-types:ed2493891a91270524d133e14b0956ee&#34;&gt;Data Types&lt;/h4&gt;
+
+&lt;p&gt;One area of concern in designing an interface between Objective-C and C code is the loss of type information for data structures. As I mentioned previously, one of the most attractive features in Swift initially was preserving type information, as obbosed to untyped &lt;code&gt;NSArray&lt;/code&gt; and &lt;code&gt;NSDictionary&lt;/code&gt; objects. In the current release of Swift, these are still issues, but with a bit of care they can be handled gracefully.&lt;/p&gt;
+
+&lt;p&gt;The following code snippet shows a simple example of optionally casting a &lt;code&gt;NSDictionary&lt;/code&gt; into a typed Swift dictionary. The &lt;a href=&#34;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6-XID_47&#34;&gt;collection classes&lt;/a&gt; documentation has further examples.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;let d = NSDictionary(object: &amp;quot;value&amp;quot;, forKey: &amp;quot;key&amp;quot;)
+if let data = d as? [String: String] {
+    print(&amp;quot;data: \(data)&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A very simple example of bridging between the &lt;code&gt;NSString&lt;/code&gt; and &lt;code&gt;String&lt;/code&gt; types by casting. When working with strings, both &lt;code&gt;NSString&lt;/code&gt; and builtin Swift &lt;code&gt;String&lt;/code&gt; methods are available. Yet again, you can checkout the &lt;a href=&#34;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6-XID_44&#34;&gt;strings&lt;/a&gt; documentation for further examples.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;let n = &amp;quot;my string&amp;quot; as NSString
+let s = n as String
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;cocoapods:ed2493891a91270524d133e14b0956ee&#34;&gt;Cocoapods&lt;/h4&gt;
+
+&lt;p&gt;We use Cocoapods for third party dependency management in the Meta Client application. When experimenting with pods that are writted in Swift, we came across an interesting aspect of the tool that I had previously been unaware of. Cocoapods has been built to use static libraries because while Mac has supported dynamic libraries for some time now, iOS has only supported them since the release of Swift. Static libraries work well for Objective-C, but as described by &lt;a href=&#34;http://blog.cocoapods.org/CocoaPods-0.36/&#34;&gt;this blog post&lt;/a&gt; on the release of Cocoapods 0.36, dynamic libraries are a requirement for Cocoapods written in Swift. The use of dynamic libraries is enabled by a &lt;code&gt;use_frameworks!&lt;/code&gt; line in your &lt;code&gt;Podfile&lt;/code&gt; specifying that your pods should be dynamically linked. If you have further interest in this topic, their &lt;a href=&#34;http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/&#34;&gt;previous blog post&lt;/a&gt; further illustrates the distinction.&lt;/p&gt;
+
+&lt;h3 id=&#34;a-lingering-issue:ed2493891a91270524d133e14b0956ee&#34;&gt;A Lingering Issue&lt;/h3&gt;
+
+&lt;p&gt;For the most part, when you move up our of interactions with Core Foundation and C code, interop between Objective-C and Swift just works. The syntatic translation works well and pretty much everything will function as expected. However, somewhere along the line we introduced a crash of the Swift compiler when building for release, which is fixed by turning off the compiler optimizations, setting &lt;strong&gt;Optimization Level&lt;/strong&gt; to &lt;strong&gt;-Onone&lt;/strong&gt; in the &lt;strong&gt;Swift Compiler - Code Generation&lt;/strong&gt; section. When I gave this talk at &lt;a href=&#34;http://www.meetup.com/Boston-Swift/&#34;&gt;Boston Swift&lt;/a&gt;, an audience member brought up this &lt;a href=&#34;https://twitter.com/search?q=“optimize.sil.never”&amp;amp;src=typd&#34;&gt;twitter discussion&lt;/a&gt; pointing to an annotation which may be useful in tracking down this bug. I&amp;rsquo;ll be diving into this in the coming weeks as we approach our closed beta launch, and if a solution is found I&amp;rsquo;ll post an update. Compiler optimizations can make an orders of magnitude difference in the performance of a program, so turning them entirely off is quite undesirable.&lt;/p&gt;
+
+&lt;!-- ![Swift compiler crash](https://meta.sc/images/blog/snippets/swift_compiler_error.png) --&gt;
+
+&lt;h3 id=&#34;conclusions:ed2493891a91270524d133e14b0956ee&#34;&gt;Conclusions&lt;/h3&gt;
+
+&lt;p&gt;When working with a new language, the last thing you want to do is try to code in the style of another language in a way that is non idiomatic. As a general rule of thumb, approaching a new language that way almost always results in less performant and less elegant code. In Swift, a lot of errort has been put in to ensure that developers can continue to interact with the existing C-based ecosystem surrounding Apple&amp;rsquo;s developer tools. While these tools are very useful for certain situations, they are far from a pancea where everything can be done in Swift. Choose your tools for the problem at hand, and when it comes to Mac and iOS development, that can mean thoughtful separation of concerns that allows you to have Swift and Objective-C existing within a simple application in a way that plays to the strengths of each language.&lt;/p&gt;
+
+&lt;p&gt;===&lt;/p&gt;
+
+&lt;h3 id=&#34;updates-after-wwdc-2015:ed2493891a91270524d133e14b0956ee&#34;&gt;Updates after WWDC 2015&lt;/h3&gt;
+
+&lt;p&gt;The development work underlying this blog post all took place before the 2015 WWDC conference last week. Two changes in particular help with some of the issues that are described above and I am very excited about trying them out within our application. With our preparations for the beta launch I have not yet had time to do so, but I&amp;rsquo;ll give my first impressions about the benefits they present.&lt;/p&gt;
+
+&lt;h4 id=&#34;objective-c-generics:ed2493891a91270524d133e14b0956ee&#34;&gt;Objective-C Generics&lt;/h4&gt;
+
+&lt;p&gt;One of the ongoing concerns I had with using Objective-C as opposed to Swift was the lack of type safety in data types. This has always been the status quo with Objective-C, but with the latest release of the Xcode 7 beta, support has been added for Objective-C generics, which will translate into typed Swift data structures. This is an exciting new feature and a great indicator that Apple is still putting significant effort into the development of Objective-C as well as Swift.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Lightweight generics allow you to specify type information for collection classes like NSArray, NSSet, and NSDictionary. The type information improves Swift access when you bridge from Objective-C and simplifies the code you have to write. (6294649)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&#34;cfunctionpointer-support:ed2493891a91270524d133e14b0956ee&#34;&gt;CFunctionPointer support&lt;/h4&gt;
+
+&lt;p&gt;The issue that truly blocked our efforts to use pure Swift was a lack of support for the &lt;code&gt;CFunctionPointer&lt;/code&gt; type. With the newest Xcode 7 beta release, support for function pointers has been added.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Native support for C function pointers: C functions that take function pointer arguments can be called using closures or global functions, with the restriction that the closure must not capture any of its local context. (16339559)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This is an exciting change that would theortically enable us to port the File System Events interactions to Swift. In combination with generics, many of my primary concerns have been alleviated. Still though, I think that the benefits of creating wrapper classes around these lower level APIs still hold. By abstracting away the complexity of the underlying functionality and providing a higher level API specific to your application, your code is more modular and more understandable. Undoubtably, as Apple seeks to fortify Swift&amp;rsquo;s abilities, many of the issues I have run into will be fixed. While the choice of language may fall more to the developer&amp;rsquo;s preference moveing forward, principles of modularity will always apply.&lt;/p&gt;
+
+&lt;p&gt;As we grow our team here at Meta, we want to make it as easy as possible for our newest team members to get up to speed and shipping code to our customers. If you&amp;rsquo;re interest in helping us simply the complex and unsolved problem of finding files, reach out to us at &lt;a href=&#34;mailto:careers@meta.sc&#34;&gt;careers@meta.sc&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;slides:ed2493891a91270524d133e14b0956ee&#34;&gt;Slides&lt;/h2&gt;
+
+&lt;p&gt;This blog post is based on a talk I gave for &lt;a href=&#34;http://www.meetup.com/Boston-Swift/&#34;&gt;Boston Swift&lt;/a&gt;. The slides are up on &lt;a href=&#34;http://www.slideshare.net/AaronTaylor20/swift-objc-49480894&#34;&gt;Slideshare&lt;/a&gt;.&lt;/p&gt;
+
+&lt;iframe src=&#34;https://www.slideshare.net/slideshow/embed_code/key/Bjr9W8CdCKOURA&#34; width=&#34;476&#34; height=&#34;400&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&#34;further-reading:ed2493891a91270524d133e14b0956ee&#34;&gt;Further Reading&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html&#34;&gt;Using Swift with Cocoa and Objective-C: Working with Cocoa Data Types&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithCAPIs.html&#34;&gt;Using Swift with Cocoa and Objective-C: Interacting with C APIs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html&#34;&gt;Using Swift with Cocoa and Objective-C: Swift and Objective-C in the Same Project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.apple.com/swift/blog/?id=6&#34;&gt;Interacting with C Pointers - Swift Blog - Apple Developer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://dev.eltima.com/post/93497713759/interacting-with-c-pointers-in-swift-part-2&#34;&gt;Mac Developers Blog - Interacting with C Pointers in Swift. Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.charlessoft.com/hacks/using_c_function_pointers_in_swift.html&#34;&gt;Horrible Coding Hack: Using C Function Pointers in Swift&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.cocoapods.org/CocoaPods-0.36/&#34;&gt;CocoaPods 0.36 - Framework and Swift Support&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/&#34;&gt;Pod Authors Guide to CocoaPods Frameworks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://adcdownload.apple.com/WWDC_2015/Xcode_7_beta/Xcode_7_beta_Release_Notes.pdf&#34;&gt;Xcode 7 beta release notes&lt;/a&gt; (requires apple developer account)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Introduction to Meta</title>
       <link>https://meta.sc/blog/meta/</link>
       <pubDate>Mon, 01 Jun 2015 10:47:35 -0400</pubDate>
