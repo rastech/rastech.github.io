@@ -432,12 +432,16 @@ pre {
     font-family: "Courier New", monospace;
     font-size: 0.9em;
     margin: 0 0 2em 0;
+    /*eliminate bootstrap's line wrapping*/
+    overflow: auto;
+    word-wrap: normal;
+    white-space: pre;
 }
 
 pre code {
     display: block;
     line-height: 1.75em;
-    padding: 1em 1.5em;
+    padding: 1.0em 1.5em;
     overflow-x: auto;
 }
 
