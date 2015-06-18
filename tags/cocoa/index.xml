@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cocoa on Meta - Smarter Search</title>
-    <link>http://localhost:1313/tags/cocoa/</link>
+    <link>https://meta.sc/tags/cocoa/</link>
     <description>Recent content in Cocoa on Meta - Smarter Search</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Meta</copyright>
     <lastBuildDate>Wed, 17 Jun 2015 12:20:38 -0400</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/cocoa/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://meta.sc/tags/cocoa/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>OS X Engineer</title>
-      <link>http://localhost:1313/careers/osx/</link>
+      <link>https://meta.sc/careers/osx/</link>
       <pubDate>Wed, 17 Jun 2015 12:20:38 -0400</pubDate>
       
-      <guid>http://localhost:1313/careers/osx/</guid>
+      <guid>https://meta.sc/careers/osx/</guid>
       <description>&lt;p&gt;You write efficient, elegant, and testable Objective-C and Swift to a high standard, in a timely and scalable way. You’re familiar with CoreData, AFNetworking, File System Events, XPC Services, Background/Login Applications, Status Bar Items, Spotlight Integrations, Local and Remote Notifications, App Sandbox, and Accessibility requirements. Intimate familiarity with the latest design guidelines for OSX is highly desirable.&lt;/p&gt;
 </description>
     </item>

@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Css on Meta - Smarter Search</title>
-    <link>http://localhost:1313/tags/css/</link>
+    <link>https://meta.sc/tags/css/</link>
     <description>Recent content in Css on Meta - Smarter Search</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Meta</copyright>
     <lastBuildDate>Wed, 17 Jun 2015 12:43:51 -0400</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/css/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://meta.sc/tags/css/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Front End Engineer</title>
-      <link>http://localhost:1313/careers/frontend/</link>
+      <link>https://meta.sc/careers/frontend/</link>
       <pubDate>Wed, 17 Jun 2015 12:43:51 -0400</pubDate>
       
-      <guid>http://localhost:1313/careers/frontend/</guid>
+      <guid>https://meta.sc/careers/frontend/</guid>
       <description>&lt;p&gt;You write fast, beautiful JavaScript to create simple and powerful user experiences. You translate visual designs into fully working web pages, and edit the HTML, CSS, and Javascript for existing page templates. You build and work with high-performance, reusable code for UI components and your work is always modular and scaleable.&lt;/p&gt;
 </description>
     </item>

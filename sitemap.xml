@@ -2,68 +2,68 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://meta.sc/</loc>
     <lastmod>2015-06-17T15:05:28-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/features/example/</loc>
+    <loc>https://meta.sc/features/example/</loc>
     <lastmod>2015-06-17T15:05:28-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/swiftobjc/</loc>
+    <loc>https://meta.sc/tech/swiftobjc/</loc>
     <lastmod>2015-06-16T09:38:02-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/meta/</loc>
+    <loc>https://meta.sc/blog/meta/</loc>
     <lastmod>2015-06-01T10:47:35-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/inboxtaming/</loc>
+    <loc>https://meta.sc/blog/inboxtaming/</loc>
     <lastmod>2015-05-13T10:47:26-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/productivitytips/</loc>
+    <loc>https://meta.sc/blog/productivitytips/</loc>
     <lastmod>2015-05-06T10:47:50-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/blog/notalone/</loc>
+    <loc>https://meta.sc/blog/notalone/</loc>
     <lastmod>2015-05-01T10:35:23-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/careers/osx/</loc>
+    <loc>https://meta.sc/careers/osx/</loc>
     <lastmod>2015-06-17T12:20:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/careers/frontend/</loc>
+    <loc>https://meta.sc/careers/frontend/</loc>
     <lastmod>2015-06-17T12:43:51-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/careers/backend/</loc>
+    <loc>https://meta.sc/careers/backend/</loc>
     <lastmod>2015-06-17T12:43:59-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/careers/search/</loc>
+    <loc>https://meta.sc/careers/search/</loc>
     <lastmod>2015-06-17T12:44:07-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/careers/analytics/</loc>
+    <loc>https://meta.sc/careers/analytics/</loc>
     <lastmod>2015-06-17T12:44:15-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/careers/all/</loc>
+    <loc>https://meta.sc/careers/all/</loc>
     <lastmod>2015-06-17T12:44:18-04:00</lastmod>
   </url>
   
