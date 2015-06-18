@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Python on Meta - Smart Search</title>
-    <link>https://www.meta.sc/tags/python/</link>
-    <description>Recent content in Python on Meta - Smart Search</description>
+    <title>Python on Meta - Smarter Search</title>
+    <link>https://meta.sc/tags/python/</link>
+    <description>Recent content in Python on Meta - Smarter Search</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>© Meta</copyright>
     <lastBuildDate>Wed, 17 Jun 2015 12:43:59 -0400</lastBuildDate>
-    <atom:link href="https://www.meta.sc/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://meta.sc/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Back End Engineer</title>
-      <link>https://www.meta.sc/careers/backend/</link>
+      <link>https://meta.sc/careers/backend/</link>
       <pubDate>Wed, 17 Jun 2015 12:43:59 -0400</pubDate>
       
-      <guid>https://www.meta.sc/careers/backend/</guid>
+      <guid>https://meta.sc/careers/backend/</guid>
       <description>&lt;p&gt;You implement robust and scalable systems in distributed environments and enjoy finding simple solutions to complex problems. You have the ability to convert high level design goals into clear and specific implementation plans. You care deeply about the performance of the systems that you build.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Data Science Engineer</title>
-      <link>https://www.meta.sc/careers/analytics/</link>
+      <link>https://meta.sc/careers/analytics/</link>
       <pubDate>Wed, 17 Jun 2015 12:44:15 -0400</pubDate>
       
-      <guid>https://www.meta.sc/careers/analytics/</guid>
+      <guid>https://meta.sc/careers/analytics/</guid>
       <description>&lt;p&gt;You are excited by the underlying structure and patterns hidden within complex datasets. You discover valuable metrics and insights from low level user interaction data. You transform abstract ideas into scalable production systems. You have experience leveraging user data to increase the quality of search engines using modern information retrieval techniques.&lt;/p&gt;
 </description>
     </item>

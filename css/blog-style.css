@@ -255,6 +255,10 @@ a.page-scroll:hover {
 
 /* Basic ----------------------------------------------------------------------------------*/
 
+img {
+    width: 100%;
+}
+
 button {
     border-radius: 0 !important;
 }

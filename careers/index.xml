@@ -1,70 +1,71 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Careers on Meta - Smart Search</title>
-    <link>https://www.meta.sc/careers/</link>
-    <description>Recent content in Careers on Meta - Smart Search</description>
+    <title>Careers on Meta - Smarter Search</title>
+    <link>https://meta.sc/careers/</link>
+    <description>Recent content in Careers on Meta - Smarter Search</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>© Meta</copyright>
     <lastBuildDate>Wed, 17 Jun 2015 12:20:38 -0400</lastBuildDate>
-    <atom:link href="https://www.meta.sc/careers/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://meta.sc/careers/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>OS X Engineer</title>
-      <link>https://www.meta.sc/careers/osx/</link>
+      <link>https://meta.sc/careers/osx/</link>
       <pubDate>Wed, 17 Jun 2015 12:20:38 -0400</pubDate>
       
-      <guid>https://www.meta.sc/careers/osx/</guid>
+      <guid>https://meta.sc/careers/osx/</guid>
       <description>&lt;p&gt;You write efficient, elegant, and testable Objective-C and Swift to a high standard, in a timely and scalable way. You’re familiar with CoreData, AFNetworking, File System Events, XPC Services, Background/Login Applications, Status Bar Items, Spotlight Integrations, Local and Remote Notifications, App Sandbox, and Accessibility requirements. Intimate familiarity with the latest design guidelines for OSX is highly desirable.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Front End Engineer</title>
-      <link>https://www.meta.sc/careers/frontend/</link>
+      <link>https://meta.sc/careers/frontend/</link>
       <pubDate>Wed, 17 Jun 2015 12:43:51 -0400</pubDate>
       
-      <guid>https://www.meta.sc/careers/frontend/</guid>
+      <guid>https://meta.sc/careers/frontend/</guid>
       <description>&lt;p&gt;You write fast, beautiful JavaScript to create simple and powerful user experiences. You translate visual designs into fully working web pages, and edit the HTML, CSS, and Javascript for existing page templates. You build and work with high-performance, reusable code for UI components and your work is always modular and scaleable.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Back End Engineer</title>
-      <link>https://www.meta.sc/careers/backend/</link>
+      <link>https://meta.sc/careers/backend/</link>
       <pubDate>Wed, 17 Jun 2015 12:43:59 -0400</pubDate>
       
-      <guid>https://www.meta.sc/careers/backend/</guid>
+      <guid>https://meta.sc/careers/backend/</guid>
       <description>&lt;p&gt;You implement robust and scalable systems in distributed environments and enjoy finding simple solutions to complex problems. You have the ability to convert high level design goals into clear and specific implementation plans. You care deeply about the performance of the systems that you build.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Search Engineer</title>
-      <link>https://www.meta.sc/careers/search/</link>
+      <link>https://meta.sc/careers/search/</link>
       <pubDate>Wed, 17 Jun 2015 12:44:07 -0400</pubDate>
       
-      <guid>https://www.meta.sc/careers/search/</guid>
+      <guid>https://meta.sc/careers/search/</guid>
       <description>&lt;p&gt;You know search algorithms and have applied them in a commercial setting. You can dive into elaborate datasets and architect the algorithms behind modern search. You are excited to use your mathematical and algorithmic background to help us fix file management.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Data Science Engineer</title>
-      <link>https://www.meta.sc/careers/analytics/</link>
+      <link>https://meta.sc/careers/analytics/</link>
       <pubDate>Wed, 17 Jun 2015 12:44:15 -0400</pubDate>
       
-      <guid>https://www.meta.sc/careers/analytics/</guid>
+      <guid>https://meta.sc/careers/analytics/</guid>
       <description>&lt;p&gt;You are excited by the underlying structure and patterns hidden within complex datasets. You discover valuable metrics and insights from low level user interaction data. You transform abstract ideas into scalable production systems. You have experience leveraging user data to increase the quality of search engines using modern information retrieval techniques.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Jack of All Trades</title>
-      <link>https://www.meta.sc/careers/all/</link>
+      <link>https://meta.sc/careers/all/</link>
       <pubDate>Wed, 17 Jun 2015 12:44:18 -0400</pubDate>
       
-      <guid>https://www.meta.sc/careers/all/</guid>
+      <guid>https://meta.sc/careers/all/</guid>
       <description>&lt;p&gt;You may not see the perfect fit in our existing job descriptions, but you love our concept and want to be involved. You are excited about revolutionizing the way people interact with their files. Meta offers challenges in user experience design, marketing, consumer behavior, and nearly every area of software engineering. If you think you would be a good fit, we can’t wait to hear from you!&lt;/p&gt;
 </description>
     </item>
