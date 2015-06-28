@@ -17,9 +17,9 @@
     
     <link href="https://plus.google.com/114504566985694374874" rel="publisher">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/scrolling-nav.css" rel="stylesheet">
+    <link href="/css/scrolling-nav-inverse.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <link href="/css/fonts.css" rel='stylesheet' type='text/css'>
     <noscript>
         <link rel="stylesheet" href="/css/skel.css" />
         <link rel="stylesheet" href="/css/home-style.css" />
@@ -41,21 +41,52 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
     <script src="js/scrolling-nav-inverse.js"></script>
     <script src="js/jquery.scrollex.min.js"></script>
     <script src="js/jquery.scrolly.min.js"></script>
-    <script type="text/javascript">
+        <script type="text/javascript">
+    function generateUUID() {
+        var d = new Date().getTime();
+        var uuid = 'xxxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = (d + Math.random() * 16) % 16 | 0;
+            d = Math.floor(d / 16);
+            return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+        return uuid;
+    };
+
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toGMTString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1);
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function checkCookie() {
+        var referrer = getCookie("ATEM_referrer");
+        if (referrer == "") {
+            setCookie("ATEM_referrer", window.location.pathname, 30);
+        }
+    }
+
     $(document).ready(function() {
-        if ($("#joinbeta").length == 0) {
-            $("#logo").after("<a href='#footer'><button id='joinbeta' type='button' class='btn btn-default joinbeta'> Join the Beta! </button></a>");
+        checkCookie();
+        if($("#joinbeta").length == 0) {
+            $("#logo").after( "<a href='#footer'><button id='joinbeta' type='button' class='btn btn-default joinbeta'> Get Early Access! </button></a>" );
             $("#joinbeta").hide();
         }
-        if ($(".navbar").offset().top < 50) {
-            $(".navbar-fixed-top").addClass("top-nav-collapse");
-            $("#logo").hide();
-            $("#joinbeta").show();
-        } else { 
-            $(".navbar-fixed-top").removeClass("top-nav-collapse");
-            $("#logo").show();
-            $("#joinbeta").hide();
-        }
+        $("#logo").hide();
+        $("#joinbeta").show();
     });
     </script>
 </head>
@@ -71,7 +102,7 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img id='logo' src='/images/metaplain.png' alt="Meta">
+                <img id='logo' src='/images/metaplain.png' style="position:relative;z-index:-100;" alt="Meta">
             </div>
             
             <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -163,20 +194,15 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
             </form>
         </div>
 
-            <section id="footer">
         <footer>
-            <ul class="icons">
+            <ul id="pageEnd" class="icons">
                 <li><a href="https://www.linkedin.com/company/rastech-software" target="_blank" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
                 <li><a href="https://plus.google.com/114504566985694374874" class="icon alt fa-google-plus-square" target="_blank"><span class="label">Google Plus</span></a></li>
                 <li><a href="https://twitter.com/unifiedsearch" class="icon alt fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
                 <li><a href="mailto:info@meta.sc?Subject=Interested%20In%20Meta&amp;body=I'm%20interested%20in%20learning%20more%20about%20Meta!" target="_top" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
                 <li><a href="https://www.facebook.com/rastechsoftware" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
             </ul>
-            <ul class="copyright">
-                <li>© Meta</li>
-            </ul>
         </footer>
-    </section>
 
     </section>
     <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>

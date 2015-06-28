@@ -25,14 +25,19 @@
 &lt;p&gt;Meta is a one-of-a-kind web service that provides you with a single portal to all of your digital files, whether they’re stored in your Documents folder, Google Drive, Dropbox, or your email inbox. Plus, Meta automatically organizes all of your files for you so you can stay focused on what’s important.&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;All of your files, one place to search&lt;br&gt;Did you forget if you saved that file on Google Drive, Dropbox, or in your Documents folder? No Problem! Meta links with your Google Drive, Dropbox, Evernote, and OneDrive accounts, as well as your computers, devices, and hard drives, so you can search for and access files on any of these platforms with Meta. Meta doesn’t store or move any of your files; it simply gives you better access to them. Say goodbye to opening multiple tabs and clicking in and out of different folders to get to a document. With Meta, you’ll be able to access all of your files from a single interface.&lt;/li&gt;
-&lt;li&gt;Get organized without the hassle&lt;br&gt;We get it. You have hundreds (or thousands) of documents on your computer. You receive email attachments every day. Who could be expected to stay on top of all these files? With Meta’s SmartTagging technology, you won’t have to. Meta automatically tags all of your documents for you so you don’t have to take time out of your day to organize. The best part? Meta learns from your behavior and preferences so its SmartTag suggestions get better the more you use it.&lt;/li&gt;
-&lt;li&gt;Access any file instantly&lt;br&gt;Meta’s lightning fast search will get you to any file you’re looking for right away, no matter where it’s stored. Even better, Meta allows you to open the file in your favorite applications. No more read-only previews, downloading duplicates, or converting Word Documents to Google Docs. Open files directly from Meta in the applications you’re familiar with so you can go straight from searching for a file to editing it. Plus, Meta ranks your search results so the file you’re looking for is always right at the top.&lt;/li&gt;
-&lt;li&gt;Search without the memorization&lt;br&gt;Don’t remember what you named a file? Or specific content from the file? We’ve got you covered! Meta’s powerful search uses not only keywords to search for files, but concepts as well. Never miss a file because you forgot to type an apostrophe (true story). And since Meta is the first service that manages all of your files (local, cloud, mobile - you name it!) you won’t even have to remember where to start your search.&lt;/li&gt;
-&lt;li&gt;Stay focused&lt;br&gt;Don’t stop what you’re doing to organize. With Meta, the tagging process is seamlessly integrated into your workflow. A couple clicks each time you download, create, or receive a new file will keep you completely organized- and you’ll never have to open or close a window. With Meta, you’ll spend less time processing files and more time working with them.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;All of your files, one place to search&lt;/p&gt;
+&lt;p&gt;Did you forget if you saved that file on Google Drive, Dropbox, or in your Documents folder? No Problem! Meta links with your Google Drive, Dropbox, Evernote, and OneDrive accounts, as well as your computers, devices, and hard drives, so you can search for and access files on any of these platforms with Meta. Meta doesn’t store or move any of your files; it simply gives you better access to them. Say goodbye to opening multiple tabs and clicking in and out of different folders to get to a document. With Meta, you’ll be able to access all of your files from a single interface.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Get organized without the hassle&lt;/p&gt;
+&lt;p&gt;We get it. You have hundreds (or thousands) of documents on your computer. You receive email attachments every day. Who could be expected to stay on top of all these files? With Meta’s SmartTagging technology, you won’t have to. Meta automatically tags all of your documents for you so you don’t have to take time out of your day to organize. The best part? Meta learns from your behavior and preferences so its SmartTag suggestions get better the more you use it.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Access any file instantly&lt;/p&gt;
+&lt;p&gt;Meta’s lightning fast search will get you to any file you’re looking for right away, no matter where it’s stored. Even better, Meta allows you to open the file in your favorite applications. No more read-only previews, downloading duplicates, or converting Word Documents to Google Docs. Open files directly from Meta in the applications you’re familiar with so you can go straight from searching for a file to editing it. Plus, Meta ranks your search results so the file you’re looking for is always right at the top.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Search without the memorization&lt;/p&gt;
+&lt;p&gt;Don’t remember what you named a file? Or specific content from the file? We’ve got you covered! Meta’s powerful search uses not only keywords to search for files, but concepts as well. Never miss a file because you forgot to type an apostrophe (true story). And since Meta is the first service that manages all of your files (local, cloud, mobile - you name it!) you won’t even have to remember where to start your search.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Stay focused&lt;/p&gt;
+&lt;p&gt;Don’t stop what you’re doing to organize. With Meta, the tagging process is seamlessly integrated into your workflow. A couple clicks each time you download, create, or receive a new file will keep you completely organized- and you’ll never have to open or close a window. With Meta, you’ll spend less time processing files and more time working with them.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Don’t take our word for it! Click here for a chance to participate in our beta release and experience the benefits of Meta firsthand.&lt;/p&gt;
+&lt;p&gt;Don’t take our word for it! Click &lt;a href=&#34;https://www.meta.sc/index.html#footer&#34;&gt;here&lt;/a&gt; for a chance to participate in our beta release and experience the benefits of Meta firsthand.&lt;/p&gt;
 </description>
     </item>
     
@@ -46,10 +51,59 @@
 
 &lt;p&gt;&lt;img style=&#34;width:50%;position:relative;left:25%;&#34; src=&#34;https://meta.sc/images/blog/inbox.png&#34; alt=&#34;Cluttered Inbox&#34;/&gt;&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;Deal with emails right away&lt;br&gt;I know it’s hard. Sometimes an email requires a long response (or an unpleasant one!) But the best way to beat the buildup is to deal with emails as soon as you get them. The minute you start putting off dealing with emails, your inbox starts spiraling out of control. “Dealing with” doesn’t necessarily involve a response - it could mean deleting an email you no longer need, archiving an email you might need to reference later, or forwarding an email for someone else to deal with. Just as long as you get it out of your inbox.&lt;/li&gt;
-&lt;li&gt;Schedule a block of time each day for email&lt;br&gt;Dealing with emails right away isn’t always feasible (especially if you receive tons of emails). If you whipped out your laptop or phone the second you received an email, you wouldn’t get anything else done. Instead, set aside a block (or two) of time each day for dealing with the emails you have accumulated since your last email session. This way, you’ll still tackle your inbox without having it take over your life. This is also a great way to boost your productivity - you’ll have uninterrupted blocks of time between email sessions to get things done.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;ol type=&#34;1&#34;&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;Deal with emails right away&lt;/p&gt;
+                        &lt;p&gt;I know it’s hard. Sometimes an email requires a long response (or an unpleasant one!) But the best way to beat the buildup is to deal with emails as soon as you get them. The minute you start putting off dealing with emails, your inbox starts spiraling out of control. “Dealing with” doesn’t necessarily involve a response - it could mean deleting an email you no longer need, archiving an email you might need to reference later, or forwarding an email for someone else to deal with. Just as long as you get it out of your inbox.
+                        &lt;/p&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;Schedule a block of time each day for email&lt;/p&gt;
+                        &lt;p&gt;Dealing with emails right away isn’t always feasible (especially if you receive tons of emails). If you whipped out your laptop or phone the second you received an email, you wouldn’t get anything else done. Instead, set aside a block (or two) of time each day for dealing with the emails you have accumulated since your last email session. This way, you’ll still tackle your inbox without having it take over your life. This is also a great way to boost your productivity - you’ll have uninterrupted blocks of time between email sessions to get things done.
+                        &lt;/p&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+
+                        &lt;p&gt;Filter incoming emails&lt;/p&gt;
+
+
+                        &lt;p&gt;Gmail’s filters are a great way to help process incoming emails (and retroactively organize old ones!) If you go to your Gmail settings under the Filters tab, you can automatically select emails based on subject, sender, whether they contain certain words, whether they include an attachment, etc. Then you can perform a number of actions on these emails - star, archive, delete, apply a label - and more! These actions will occur automatically anytime an incoming email matches the criteria so you’re one step closer to tackling your out-of-control inbox. &lt;/p&gt;
+                        &lt;img class=&#34;fullsize&#34; src=&#34;images/filtersettings.png&#34; alt=&#34;Filter Settings&#34;&gt;
+                        &lt;p&gt;&lt;/p&gt;
+                        &lt;img class=&#34;fullsize&#34; src=&#34;images/filter.png&#34; alt=&#34;Filter&#34;&gt;
+
+                    &lt;/li&gt;
+                    &lt;p&gt;&lt;/p&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;Archive&lt;/p&gt;
+                        &lt;p&gt;There are always emails you can’t bring yourself to delete. Maybe an email contains an important attachment or the address of an upcoming meeting. Or maybe you just want to save a certain correspondence for your records. Whatever the case, these emails are cluttering your inbox. This is a great time to use the archive feature. Archiving an email removes it from your primary inbox (so you’re one step closer to achieving the elusive Inbox Zero) but doesn’t delete it. You can still access the email easily enough when you need it, but it won’t clutter your inbox in the meantime. If your email service doesn’t have an archive feature, folders are another option to cut down the clutter.
+                        &lt;/p&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;Bonus: Gmail’s Send and Archive feature&lt;/p&gt;
+                        &lt;img class=&#34;fullsize&#34; src=&#34;images/sendandarchive_zoom.png&#34; alt=&#34;Send and Archive&#34;&gt;
+                        &lt;p&gt;As an added bonus for Gmail users, you can enable the Send and Archive button for outgoing emails. Whenever you respond to a message in a thread, you’ll have the option to Send and Archive (as well as just Send). This will send your reply and archive the thread, getting it out of your inbox. The thread will reappear in your inbox only when the recipient writes back to you. The Send and Archive feature can be enabled in your Gmail settings in the General tab.
+                        &lt;/p&gt;
+
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;Get a firm answer&lt;/p&gt;
+                        &lt;p&gt;This is a tip I learned from my mom (when I would always ask her for help with important emails!) Instead of responding with “I’d love to set up a meeting with you sometime,” write “I’d love to meet with you sometime this week. I’m free Wednesday afternoon and Thursday morning.” This is great for two reasons. First of all, it greatly cuts down on correspondence. The recipient will either agree to your date or propose another. Second, it helps get a date on the calendar. You are much more likely to get a meeting with someone ASAP if you suggest a date and time than if you vaguely say you’d like to meet and leave it open ended.
+                        &lt;/p&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;Gmail’s undo send feature&lt;/p&gt;
+                        &lt;img class=&#34;fullsize&#34; src=&#34;images/undo.png&#34; alt=&#34;Undo Send&#34;&gt;
+                        &lt;p&gt;This one’s a personal favorite of mine. You just finished an important email (to a boss, prospective employer, or investor). You click send - and then you see it! A glaring typo smack in the middle of the email. Wish you could unsend the email? With the undo send feature, now you can! Simply go to your Gmail settings, navigate to the Labs tab, and enable the Undo Send feature (don’t forget to click Save Changes at the bottom of the page!) Now, every time you click the send button, your email won’t actually send for a few seconds. The option to “Undo” will appear at the top of your window. If you go to the General tab in your Gmail settings, you can set the amount of time you are able to undo send (10 seconds works for me!)&lt;/p&gt;
+                        
+                        
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;Relax!&lt;/p&gt;
+                        &lt;p&gt;A lot of people struggle with this one (including me!) When you write an important email, it’s easy to hesitate when it’s time to press send. You reread it again and again, and maybe even leave it in your drafts folder overnight while you think it over. In the meantime, the email is cluttering your inbox. Don’t overthink it! Proofreading and editing are obviously a must, but obsessing too much over an email costs you time. The recipient won’t examine the email as carefully as you will.
+                        &lt;/p&gt;
+                    &lt;/li&gt;
+                &lt;/ol&gt;
 </description>
     </item>
     

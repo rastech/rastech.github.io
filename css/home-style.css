@@ -7,6 +7,7 @@ and (max-device-width : 1024px) {
     .navbar {
         top: 25px;
         padding: 0;
+        position:relative;
     }
 
     .top-nav-collapse {
@@ -23,6 +24,7 @@ and (max-device-width : 480px) {
     .navbar {
         top: 25px;
         padding: 0;
+        position:relative;
     }
 
     .top-nav-collapse {
@@ -39,6 +41,7 @@ and (max-device-width : 568px) {
     .navbar {
         top: 25px;
         padding: 0;
+        position:relative;
     }
 
     .top-nav-collapse {
@@ -56,6 +59,7 @@ and (max-device-width : 667px) {
     .navbar {
         top: 25px;
         padding: 0;
+        position:relative;
     }
 
     .top-nav-collapse {
@@ -95,23 +99,23 @@ and (max-device-width : 667px) {
 
 a.page-scroll {
     font-weight: lighter;
-    color: #6BB7AD !important;
+    color: #3cbcbc !important;
 }
 
 a.page-scroll:hover {
     font-weight: lighter;
-    color: #6BB7AD !important;
+    color: #3cbcbc !important;
     text-decoration: underline !important;
 }
 
 #joinbeta {
     position: relative;
-    top: 7px;
-    color: #6BB7AD !important;
+    top: 8px;
+    color: #3cbcbc !important;
     height: 35px;
     border: none;
     outline: none;
-    box-shadow: inset 0 0 0 1px #6BB7AD;
+    box-shadow: inset 0 0 0 1px #3cbcbc;
     text-transform: none;
     font-weight: lighter;
     font-size: 16px !important;
@@ -119,7 +123,7 @@ a.page-scroll:hover {
 }
 
 #joinbeta:hover {
-    background: #6BB7AD;
+    background: #3cbcbc;
     box-shadow: none;
     color: white !important;
 }
@@ -181,7 +185,7 @@ a.page-scroll:hover {
 /* Basic ----------------------------------------------------------------------------------*/
 
 #mainLogo {
-    width: 250px;
+    width: 270px;
 }
 
 #joinButton {
@@ -273,12 +277,12 @@ textarea {
 
 a {
     font-family: "Open Sans";
-    color: #6BB7AD;
+    color: #3cbcbc;
     text-decoration: none;
 }
 
 a:hover {
-    color: #6BB7AD;
+    color: #3cbcbc;
     text-decoration: underline;
 }
 
@@ -994,8 +998,8 @@ input[type="reset"].special,
 input[type="button"].special,
 button.special,
 .button.special {
-    border: 1px solid #6BB7AD;
-    background-color: #6BB7AD;
+    border: 1px solid #3cbcbc;
+    background-color: #3cbcbc;
     box-shadow: none;
     color: #ffffff !important;
     margin-bottom: 1px;
@@ -1005,9 +1009,9 @@ input[type="reset"].special:hover,
 input[type="button"].special:hover,
 button.special:hover,
 .button.special:hover {
-    border: 1px solid #6BB7AD;
+    border: 1px solid #3cbcbc;
     background-color: white;
-    color: #6BB7AD !important;
+    color: #3cbcbc !important;
     margin-bottom: 1px;
     text-decoration: none !important;
 }
@@ -1185,7 +1189,7 @@ button:disabled,
 #footer {
     background: white;
     color: black;
-    padding: 10em 0 6em 0;
+    padding: 20em 0 6em 0;
     position: relative;
     text-align: center;
 }
@@ -1217,7 +1221,7 @@ button:disabled,
     color: inherit;
 }
 #footer footer a:hover {
-    color: #6BB7AD !important;
+    color: #3cbcbc !important;
 }
 #footer footer .copyright {
     font-size: 0.8em;

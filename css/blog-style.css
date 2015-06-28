@@ -7,6 +7,7 @@ and (max-device-width : 1024px) {
     .navbar {
         top: 25px;
         padding: 0;
+        position:relative;
     }
 
     .top-nav-collapse {
@@ -23,12 +24,29 @@ and (max-device-width : 480px) {
     .navbar {
         top: 25px;
         padding: 0;
+        position:relative;
     }
 
     .top-nav-collapse {
         top: 25px;
         padding: 0;
     }
+
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) 
+and (orientation : portrait)  { 
+
+    .datelink {
+        display: none !important;
+    }
+
+    .separator {
+        display: none !important;
+    }
+
 }
 
 /* iPhone 5 ----------------------------------------------------------------------------------*/
@@ -39,6 +57,42 @@ and (max-device-width : 568px) {
     .navbar {
         top: 25px;
         padding: 0;
+        position:relative;
+    }
+
+    .top-nav-collapse {
+        top: 25px;
+        padding: 0;
+    }
+
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) 
+and (orientation : portrait)  { 
+
+    .datelink {
+        display: none !important;
+    }
+
+    .separator {
+        display: none !important;
+    }
+
+}
+
+
+/* iPhone 6 ----------------------------------------------------------------------------------*/
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) {
+
+    .navbar {
+        top: 25px;
+        padding: 0;
+        position:relative;
     }
 
     .top-nav-collapse {
@@ -47,20 +101,11 @@ and (max-device-width : 568px) {
     }
 }
 
-/* iPhone 6 ----------------------------------------------------------------------------------*/
-@media only screen 
-and (min-device-width : 375px) 
-and (max-device-width : 667px) {
 
-    .navbar {
-        top: 25px;
-        padding: 0;
-    }
 
-    .top-nav-collapse {
-        top: 25px;
-        padding: 0;
-    }
+p {
+    font-family: "Open Sans" !important;
+    font-weight: 100 !important;
 }
 
 /* Navbar ----------------------------------------------------------------------------------*/
@@ -84,23 +129,23 @@ and (max-device-width : 667px) {
 
 a.page-scroll {
     font-weight: lighter;
-    color: #6BB7AD !important;
+    color: #3CBCBC !important;
 }
 
 a.page-scroll:hover {
     font-weight: lighter;
-    color: #6BB7AD !important;
+    color: #3CBCBC !important;
     text-decoration: underline !important;
 }
 
 #joinbeta {
     position: relative;
-    top: 7px;
-    color: #6BB7AD !important;
+    top: 8px;
+    color: #3CBCBC !important;
     height: 35px;
     border: none;
     outline: none;
-    box-shadow: inset 0 0 0 1px #6BB7AD;
+    box-shadow: inset 0 0 0 1px #3CBCBC;
     text-transform: none;
     font-weight: lighter;
     font-size: 16px !important;
@@ -108,7 +153,7 @@ a.page-scroll:hover {
 }
 
 #joinbeta:hover {
-    background: #6BB7AD;
+    background: #3CBCBC;
     box-shadow: none;
     color: white !important;
 }
@@ -124,7 +169,7 @@ a.page-scroll:hover {
 }
 
 .commentlink {
-    color: #6BB7AD !important;
+    color: #3CBCBC !important;
 }
 
 .commentlink:hover {
@@ -140,7 +185,7 @@ a.page-scroll:hover {
 }
 
 .headerlink:hover {
-    color: #6BB7AD;
+    color: #3CBCBC;
 }
 
 .postinfo {
@@ -157,6 +202,7 @@ a.page-scroll:hover {
 }
 
 .textpreview {
+    font-weight: normal;
     font-family: "Open Sans" !important;
     font-weight: 100 !important;
     font-size: 16px !important;
@@ -164,13 +210,13 @@ a.page-scroll:hover {
 
 .readmore {
     font-size: 16px;
-    color: #6BB7AD;
+    color: #3CBCBC;
     font-weight: lighter;
     font-family: "Open Sans" !important;
 }
 
 .readmore:hover {
-    color: #6BB7AD;
+    color: #3CBCBC;
     text-decoration: underline;
 }
 
@@ -181,7 +227,7 @@ a.page-scroll:hover {
 
 .socialMedia .icon {
     font-size: 20px !important;
-    color: #6BB7AD;
+    color: #3CBCBC;
 }
 
 .socialMedia .icon:hover {
@@ -255,10 +301,6 @@ a.page-scroll:hover {
 
 /* Basic ----------------------------------------------------------------------------------*/
 
-img {
-    width: 100%;
-}
-
 button {
     border-radius: 0 !important;
 }
@@ -318,12 +360,12 @@ textarea {
 
 a {
     font-family: "Open Sans";
-    color: #6BB7AD;
+    color: #3CBCBC;
     text-decoration: none;
 }
 
 a:hover {
-    color: #6BB7AD;
+    color: #3CBCBC;
     text-decoration: underline;
 }
 
@@ -1262,7 +1304,7 @@ button:disabled,
     color: inherit;
 }
 #footer footer a:hover {
-    color: #6BB7AD !important;
+    color: #3CBCBC !important;
 }
 #footer footer .copyright {
     font-size: 0.8em;

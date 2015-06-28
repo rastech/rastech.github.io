@@ -30,7 +30,9 @@
 
 &lt;h5 id=&#34;tl-dr-if-you-are-hitting-roadblocks-in-trying-to-communicate-with-core-foundation-and-c-apis-directly-from-swift-just-wrap-them-in-a-friendly-objective-c-class-that-provides-an-simple-api-for-the-rest-of-your-application-to-use:ed2493891a91270524d133e14b0956ee&#34;&gt;tl;dr If you are hitting roadblocks in trying to communicate with Core Foundation and C APIs directly from Swift, just wrap them in a friendly Objective-C class that provides an simple API for the rest of your application to use.&lt;/h5&gt;
 
-&lt;p&gt;At Meta, most of the work that has gone into our client applications thusfar facilitates keeping our user’s files in sync with our cloud system so that they can be easily searched and accessed. When we began work on the client application for Mac OS X a few months ago, there were two major decisions that had to be made. The first was how to organize the application so that a resilient background process could listen for file system changes and keep everything up to date in the cloud. I’ll likely be discussing that in a future post. The second decision was what language to base the project in, which I will be discussing here.&lt;/p&gt;
+&lt;p&gt;&lt;img style=&#34;width:50%;position:relative;left:25%;&#34; src=&#34;https://meta.sc/images/blog/swift_logo.png&#34; alt=&#34;Meta Cloud&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;At Meta, most of the work that has gone into our client applications thus far facilitates keeping our user’s files in sync with our cloud system so that they can be easily searched and accessed. When we began work on the client application for Mac OS X a few months ago, there were two major decisions that had to be made. The first was how to organize the application so that a resilient background process could listen for file system changes and keep everything up to date in the cloud. I’ll likely be discussing that in a future post. The second decision was what language to base the project in, which I will be discussing here.&lt;/p&gt;
 
 &lt;p&gt;Since I was to be the primary developer of this application for the short term, this was partly a personal choice. While most of my experience in Apple&amp;rsquo;s world to date had been in writing Objective-C code, I had experimented with Swift and was excited to try it out in a production application. The were a few features in particular that I was attracted to in Swift.&lt;/p&gt;
 
@@ -61,8 +63,7 @@ public class func mimeTypeForFile(path: String) -&amp;gt; String {
 
 &lt;p&gt;Once I got this code compiling, I wrote a short unit test. Unfortunately when this code is run the following error occurs, a dreaded &lt;code&gt;EXC_BAD_INSTRUCTION&lt;/code&gt; runtime error. It is certainly possible that this code could be further massaged to get this example working (please let me know if you are able to), but after a good half hour or so I wasn&amp;rsquo;t able to find a solution.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://meta.sc/blog/images/snippets/swift_uttype.png&#34; alt=&#34;Swift UTType interfacing&#34; title=&#34;Optional title&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img style=&#34;width:100%;position:relative;&#34; src=&#34;https://meta.sc/blog/images/snippets/swift_uttype.png&#34; alt=&#34;Swift UTType interfacing&#34; title=&#34;Optional title&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;objective-c:ed2493891a91270524d133e14b0956ee&#34;&gt;Objective-C&lt;/h4&gt;
 
@@ -121,8 +122,7 @@ func testCreateSimpleSwiftListener() {
 
 &lt;p&gt;Here is the code with the compiler errors shown.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://meta.sc/blog/images/snippets/swift_fsevents_func.png&#34; alt=&#34;Swift FSEvents interfacing&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img style=&#34;width:100%;position:relative;&#34; src=&#34;https://meta.sc/blog/images/snippets/swift_fsevents_func.png&#34; alt=&#34;Swift FSEvents interfacing&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Again, with some further massaging this &lt;a href=&#34;http://stackoverflow.com/questions/25514176/using-swift-cfunctionpointer-to-pass-a-callback-to-coremidi-api#answer-29375116&#34;&gt;might&lt;/a&gt; or &lt;a href=&#34;http://dev.eltima.com/post/97718928834/interacting-with-c-pointers-in-swift-part-3&#34;&gt;might not&lt;/a&gt; be possible by delving further into the Objective-C runtime, but in doing so we yet again lose out on the most of the benefits of working in Swift at all. Even with this function pointer issue fixed, the &lt;code&gt;UnsafeMutablePointer&amp;lt;Type&amp;gt;&lt;/code&gt; and &lt;code&gt;UnsafePointer&amp;lt;Type&amp;gt;&lt;/code&gt; wrappers are uncomfortable to work with and a jarring change from the kind of Swift code that one can enjoy writing.&lt;/p&gt;
 
@@ -142,7 +142,7 @@ func testCreateSimpleSwiftListener() {
 
 &lt;p&gt;The basis for interop between Objective-C and Swift is bridging between the two languages. Calling into Objective-C from Swift requires a bridging header to be inserted into your project, which Xcode will usually prompt you for, as shown below, when an Objective-C file is added to a Swift project. This file is linked to your build settings in the &lt;strong&gt;Swift Compiler - Code Generation&lt;/strong&gt; section as the &lt;strong&gt;Objective-C Bridging Header&lt;/strong&gt;. This header file contains import statements for the header files of Objective-C code that you wish to interact with. The Objective-C file that prompted its creation will be automatically added, and all subsequent files must be added manually.&lt;/p&gt;
 
-&lt;div align=&#34;center&#34;&gt;&lt;img src=&#34;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/Art/bridgingheader_2x.png&#34; width=&#34;400&#34;/&gt;&lt;/div&gt;
+&lt;div align=&#34;center&#34;&gt;&lt;img src=&#34;https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/Art/bridgingheader_2x.png&#34; style=&#34;width:100%;position:relative;&#34;/&gt;&lt;/div&gt;
 
 &lt;h4 id=&#34;syntactic-translation:ed2493891a91270524d133e14b0956ee&#34;&gt;Syntactic Translation&lt;/h4&gt;
 
@@ -188,7 +188,7 @@ let s = n as String
 
 &lt;h4 id=&#34;cocoapods:ed2493891a91270524d133e14b0956ee&#34;&gt;Cocoapods&lt;/h4&gt;
 
-&lt;p&gt;We use Cocoapods for third party dependency management in the Meta client application. When experimenting with pods that are writted in Swift, we came across an interesting aspect of the tool that I had previously been unaware of. Cocoapods has historically used static libraries, because while Mac has supported dynamic libraries for some time now, iOS has only supported them since the release of Swift. Static libraries work well for Objective-C, but as described by a &lt;a href=&#34;http://blog.cocoapods.org/CocoaPods-0.36/&#34;&gt;blog post&lt;/a&gt; on the release of Cocoapods 0.36, dynamic libraries are a requirement for Cocoapods written in Swift. The use of dynamic libraries is enabled by a &lt;code&gt;use_frameworks!&lt;/code&gt; line in your &lt;code&gt;Podfile&lt;/code&gt; specifying that your pods should be dynamically linked. If you have further interest in this topic, their &lt;a href=&#34;http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/&#34;&gt;previous blog post&lt;/a&gt; further illustrates the distinction.&lt;/p&gt;
+&lt;p&gt;We use Cocoapods for third party dependency management in the Meta client application. When experimenting with pods that are written in Swift, we came across an interesting aspect of the tool that I had previously been unaware of. Cocoapods has historically used static libraries, because while Mac has supported dynamic libraries for some time now, iOS has only supported them since the release of Swift. Static libraries work well for Objective-C, but as described by a &lt;a href=&#34;http://blog.cocoapods.org/CocoaPods-0.36/&#34;&gt;blog post&lt;/a&gt; on the release of Cocoapods 0.36, dynamic libraries are a requirement for Cocoapods written in Swift. The use of dynamic libraries is enabled by a &lt;code&gt;use_frameworks!&lt;/code&gt; line in your &lt;code&gt;Podfile&lt;/code&gt; specifying that your pods should be dynamically linked. If you have further interest in this topic, their &lt;a href=&#34;http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/&#34;&gt;previous blog post&lt;/a&gt; further illustrates the distinction.&lt;/p&gt;
 
 &lt;h3 id=&#34;a-lingering-issue:ed2493891a91270524d133e14b0956ee&#34;&gt;A Lingering Issue&lt;/h3&gt;
 
@@ -198,7 +198,7 @@ let s = n as String
 
 &lt;h3 id=&#34;conclusions:ed2493891a91270524d133e14b0956ee&#34;&gt;Conclusions&lt;/h3&gt;
 
-&lt;p&gt;When working with a new language, the last thing you want to do is try to code in the style of another language in a way that is non idiomatic. As a general rule of thumb, approaching a new language that way almost always results in less performant and less elegant code. In Swift, a lot of errort has been put in to ensure that developers can continue to interact with the existing C-based ecosystem surrounding Apple&amp;rsquo;s developer tools. While these tools are very useful for certain situations, they are far from a pancea where everything can be done in Swift. Choose your tools for the problem at hand, and when it comes to Mac and iOS development, that can mean thoughtful separation of concerns that allows you to have Swift and Objective-C existing within a simple application in a way that plays to the strengths of each language.&lt;/p&gt;
+&lt;p&gt;When working with a new language, the last thing you want to do is try to code in the style of another language in a way that is non idiomatic. As a general rule of thumb, approaching a new language that way almost always results in less performant and less elegant code. In Swift, a lot of effort has been put in to ensure that developers can continue to interact with the existing C-based ecosystem surrounding Apple&amp;rsquo;s developer tools. While these tools are very useful for certain situations, they are far from a panacea where everything can be done in Swift. Choose your tools for the problem at hand, and when it comes to Mac and iOS development, that can mean thoughtful separation of concerns that allows you to have Swift and Objective-C existing within a simple application in a way that plays to the strengths of each language.&lt;/p&gt;
 
 &lt;p&gt;===&lt;/p&gt;
 
@@ -230,7 +230,8 @@ let s = n as String
 
 &lt;p&gt;This blog post is based on a talk I gave for &lt;a href=&#34;http://www.meetup.com/Boston-Swift/&#34;&gt;Boston Swift&lt;/a&gt;. The slides are up on &lt;a href=&#34;http://www.slideshare.net/AaronTaylor20/swift-objc-49480894&#34;&gt;Slideshare&lt;/a&gt;.&lt;/p&gt;
 
-&lt;iframe src=&#34;https://www.slideshare.net/slideshow/embed_code/key/Bjr9W8CdCKOURA&#34; width=&#34;476&#34; height=&#34;400&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34;&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;center&gt;&lt;iframe src=&#34;https://www.slideshare.net/slideshow/embed_code/key/Bjr9W8CdCKOURA&#34; width=&#34;476&#34; height=&#34;400&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34;&gt;&lt;/iframe&gt;&lt;/center&gt;
+&lt;p&gt;&lt;/p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;further-reading:ed2493891a91270524d133e14b0956ee&#34;&gt;Further Reading&lt;/h2&gt;
 
@@ -263,14 +264,19 @@ let s = n as String
 &lt;p&gt;Meta is a one-of-a-kind web service that provides you with a single portal to all of your digital files, whether they’re stored in your Documents folder, Google Drive, Dropbox, or your email inbox. Plus, Meta automatically organizes all of your files for you so you can stay focused on what’s important.&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;All of your files, one place to search&lt;br&gt;Did you forget if you saved that file on Google Drive, Dropbox, or in your Documents folder? No Problem! Meta links with your Google Drive, Dropbox, Evernote, and OneDrive accounts, as well as your computers, devices, and hard drives, so you can search for and access files on any of these platforms with Meta. Meta doesn’t store or move any of your files; it simply gives you better access to them. Say goodbye to opening multiple tabs and clicking in and out of different folders to get to a document. With Meta, you’ll be able to access all of your files from a single interface.&lt;/li&gt;
-&lt;li&gt;Get organized without the hassle&lt;br&gt;We get it. You have hundreds (or thousands) of documents on your computer. You receive email attachments every day. Who could be expected to stay on top of all these files? With Meta’s SmartTagging technology, you won’t have to. Meta automatically tags all of your documents for you so you don’t have to take time out of your day to organize. The best part? Meta learns from your behavior and preferences so its SmartTag suggestions get better the more you use it.&lt;/li&gt;
-&lt;li&gt;Access any file instantly&lt;br&gt;Meta’s lightning fast search will get you to any file you’re looking for right away, no matter where it’s stored. Even better, Meta allows you to open the file in your favorite applications. No more read-only previews, downloading duplicates, or converting Word Documents to Google Docs. Open files directly from Meta in the applications you’re familiar with so you can go straight from searching for a file to editing it. Plus, Meta ranks your search results so the file you’re looking for is always right at the top.&lt;/li&gt;
-&lt;li&gt;Search without the memorization&lt;br&gt;Don’t remember what you named a file? Or specific content from the file? We’ve got you covered! Meta’s powerful search uses not only keywords to search for files, but concepts as well. Never miss a file because you forgot to type an apostrophe (true story). And since Meta is the first service that manages all of your files (local, cloud, mobile - you name it!) you won’t even have to remember where to start your search.&lt;/li&gt;
-&lt;li&gt;Stay focused&lt;br&gt;Don’t stop what you’re doing to organize. With Meta, the tagging process is seamlessly integrated into your workflow. A couple clicks each time you download, create, or receive a new file will keep you completely organized- and you’ll never have to open or close a window. With Meta, you’ll spend less time processing files and more time working with them.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;All of your files, one place to search&lt;/p&gt;
+&lt;p&gt;Did you forget if you saved that file on Google Drive, Dropbox, or in your Documents folder? No Problem! Meta links with your Google Drive, Dropbox, Evernote, and OneDrive accounts, as well as your computers, devices, and hard drives, so you can search for and access files on any of these platforms with Meta. Meta doesn’t store or move any of your files; it simply gives you better access to them. Say goodbye to opening multiple tabs and clicking in and out of different folders to get to a document. With Meta, you’ll be able to access all of your files from a single interface.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Get organized without the hassle&lt;/p&gt;
+&lt;p&gt;We get it. You have hundreds (or thousands) of documents on your computer. You receive email attachments every day. Who could be expected to stay on top of all these files? With Meta’s SmartTagging technology, you won’t have to. Meta automatically tags all of your documents for you so you don’t have to take time out of your day to organize. The best part? Meta learns from your behavior and preferences so its SmartTag suggestions get better the more you use it.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Access any file instantly&lt;/p&gt;
+&lt;p&gt;Meta’s lightning fast search will get you to any file you’re looking for right away, no matter where it’s stored. Even better, Meta allows you to open the file in your favorite applications. No more read-only previews, downloading duplicates, or converting Word Documents to Google Docs. Open files directly from Meta in the applications you’re familiar with so you can go straight from searching for a file to editing it. Plus, Meta ranks your search results so the file you’re looking for is always right at the top.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Search without the memorization&lt;/p&gt;
+&lt;p&gt;Don’t remember what you named a file? Or specific content from the file? We’ve got you covered! Meta’s powerful search uses not only keywords to search for files, but concepts as well. Never miss a file because you forgot to type an apostrophe (true story). And since Meta is the first service that manages all of your files (local, cloud, mobile - you name it!) you won’t even have to remember where to start your search.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Stay focused&lt;/p&gt;
+&lt;p&gt;Don’t stop what you’re doing to organize. With Meta, the tagging process is seamlessly integrated into your workflow. A couple clicks each time you download, create, or receive a new file will keep you completely organized- and you’ll never have to open or close a window. With Meta, you’ll spend less time processing files and more time working with them.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Don’t take our word for it! Click here for a chance to participate in our beta release and experience the benefits of Meta firsthand.&lt;/p&gt;
+&lt;p&gt;Don’t take our word for it! Click &lt;a href=&#34;https://www.meta.sc/index.html#footer&#34;&gt;here&lt;/a&gt; for a chance to participate in our beta release and experience the benefits of Meta firsthand.&lt;/p&gt;
 </description>
     </item>
     
@@ -284,10 +290,59 @@ let s = n as String
 
 &lt;p&gt;&lt;img style=&#34;width:50%;position:relative;left:25%;&#34; src=&#34;https://meta.sc/images/blog/inbox.png&#34; alt=&#34;Cluttered Inbox&#34;/&gt;&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;Deal with emails right away&lt;br&gt;I know it’s hard. Sometimes an email requires a long response (or an unpleasant one!) But the best way to beat the buildup is to deal with emails as soon as you get them. The minute you start putting off dealing with emails, your inbox starts spiraling out of control. “Dealing with” doesn’t necessarily involve a response - it could mean deleting an email you no longer need, archiving an email you might need to reference later, or forwarding an email for someone else to deal with. Just as long as you get it out of your inbox.&lt;/li&gt;
-&lt;li&gt;Schedule a block of time each day for email&lt;br&gt;Dealing with emails right away isn’t always feasible (especially if you receive tons of emails). If you whipped out your laptop or phone the second you received an email, you wouldn’t get anything else done. Instead, set aside a block (or two) of time each day for dealing with the emails you have accumulated since your last email session. This way, you’ll still tackle your inbox without having it take over your life. This is also a great way to boost your productivity - you’ll have uninterrupted blocks of time between email sessions to get things done.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;ol type=&#34;1&#34;&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;Deal with emails right away&lt;/p&gt;
+                        &lt;p&gt;I know it’s hard. Sometimes an email requires a long response (or an unpleasant one!) But the best way to beat the buildup is to deal with emails as soon as you get them. The minute you start putting off dealing with emails, your inbox starts spiraling out of control. “Dealing with” doesn’t necessarily involve a response - it could mean deleting an email you no longer need, archiving an email you might need to reference later, or forwarding an email for someone else to deal with. Just as long as you get it out of your inbox.
+                        &lt;/p&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;Schedule a block of time each day for email&lt;/p&gt;
+                        &lt;p&gt;Dealing with emails right away isn’t always feasible (especially if you receive tons of emails). If you whipped out your laptop or phone the second you received an email, you wouldn’t get anything else done. Instead, set aside a block (or two) of time each day for dealing with the emails you have accumulated since your last email session. This way, you’ll still tackle your inbox without having it take over your life. This is also a great way to boost your productivity - you’ll have uninterrupted blocks of time between email sessions to get things done.
+                        &lt;/p&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+
+                        &lt;p&gt;Filter incoming emails&lt;/p&gt;
+
+
+                        &lt;p&gt;Gmail’s filters are a great way to help process incoming emails (and retroactively organize old ones!) If you go to your Gmail settings under the Filters tab, you can automatically select emails based on subject, sender, whether they contain certain words, whether they include an attachment, etc. Then you can perform a number of actions on these emails - star, archive, delete, apply a label - and more! These actions will occur automatically anytime an incoming email matches the criteria so you’re one step closer to tackling your out-of-control inbox. &lt;/p&gt;
+                        &lt;img class=&#34;fullsize&#34; src=&#34;images/filtersettings.png&#34; alt=&#34;Filter Settings&#34;&gt;
+                        &lt;p&gt;&lt;/p&gt;
+                        &lt;img class=&#34;fullsize&#34; src=&#34;images/filter.png&#34; alt=&#34;Filter&#34;&gt;
+
+                    &lt;/li&gt;
+                    &lt;p&gt;&lt;/p&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;Archive&lt;/p&gt;
+                        &lt;p&gt;There are always emails you can’t bring yourself to delete. Maybe an email contains an important attachment or the address of an upcoming meeting. Or maybe you just want to save a certain correspondence for your records. Whatever the case, these emails are cluttering your inbox. This is a great time to use the archive feature. Archiving an email removes it from your primary inbox (so you’re one step closer to achieving the elusive Inbox Zero) but doesn’t delete it. You can still access the email easily enough when you need it, but it won’t clutter your inbox in the meantime. If your email service doesn’t have an archive feature, folders are another option to cut down the clutter.
+                        &lt;/p&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;Bonus: Gmail’s Send and Archive feature&lt;/p&gt;
+                        &lt;img class=&#34;fullsize&#34; src=&#34;images/sendandarchive_zoom.png&#34; alt=&#34;Send and Archive&#34;&gt;
+                        &lt;p&gt;As an added bonus for Gmail users, you can enable the Send and Archive button for outgoing emails. Whenever you respond to a message in a thread, you’ll have the option to Send and Archive (as well as just Send). This will send your reply and archive the thread, getting it out of your inbox. The thread will reappear in your inbox only when the recipient writes back to you. The Send and Archive feature can be enabled in your Gmail settings in the General tab.
+                        &lt;/p&gt;
+
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;Get a firm answer&lt;/p&gt;
+                        &lt;p&gt;This is a tip I learned from my mom (when I would always ask her for help with important emails!) Instead of responding with “I’d love to set up a meeting with you sometime,” write “I’d love to meet with you sometime this week. I’m free Wednesday afternoon and Thursday morning.” This is great for two reasons. First of all, it greatly cuts down on correspondence. The recipient will either agree to your date or propose another. Second, it helps get a date on the calendar. You are much more likely to get a meeting with someone ASAP if you suggest a date and time than if you vaguely say you’d like to meet and leave it open ended.
+                        &lt;/p&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;Gmail’s undo send feature&lt;/p&gt;
+                        &lt;img class=&#34;fullsize&#34; src=&#34;images/undo.png&#34; alt=&#34;Undo Send&#34;&gt;
+                        &lt;p&gt;This one’s a personal favorite of mine. You just finished an important email (to a boss, prospective employer, or investor). You click send - and then you see it! A glaring typo smack in the middle of the email. Wish you could unsend the email? With the undo send feature, now you can! Simply go to your Gmail settings, navigate to the Labs tab, and enable the Undo Send feature (don’t forget to click Save Changes at the bottom of the page!) Now, every time you click the send button, your email won’t actually send for a few seconds. The option to “Undo” will appear at the top of your window. If you go to the General tab in your Gmail settings, you can set the amount of time you are able to undo send (10 seconds works for me!)&lt;/p&gt;
+                        
+                        
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;p&gt;Relax!&lt;/p&gt;
+                        &lt;p&gt;A lot of people struggle with this one (including me!) When you write an important email, it’s easy to hesitate when it’s time to press send. You reread it again and again, and maybe even leave it in your drafts folder overnight while you think it over. In the meantime, the email is cluttering your inbox. Don’t overthink it! Proofreading and editing are obviously a must, but obsessing too much over an email costs you time. The recipient won’t examine the email as carefully as you will.
+                        &lt;/p&gt;
+                    &lt;/li&gt;
+                &lt;/ol&gt;
 </description>
     </item>
     
@@ -357,6 +412,15 @@ let s = n as String
 
 &lt;p&gt;Intrigued? Sign up &lt;a href=&#34;https://www.meta.sc/index.html#footer&#34;&gt;here&lt;/a&gt; for a chance to participate in our beta!&lt;/p&gt;
 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://meta.sc/tech/startclean/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://meta.sc/tech/startclean/</guid>
+      <description></description>
     </item>
     
     <item>

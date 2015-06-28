@@ -3,7 +3,7 @@ $(window).scroll(function() {
     if ($(".navbar").offset().top > 50) {
         $(".navbar-fixed-top").addClass("top-nav-collapse");
         if($("#joinbeta").length == 0) {
-            $("#logo").after( "<a href='index.html#footer'><button id='joinbeta' type='button' class='btn btn-default joinbeta'> Join the Beta! </button></a>" );
+            $("#logo").after( "<a href='index.html#footer'><button id='joinbeta' type='button' class='btn btn-default joinbeta'> Get Early Access! </button></a>" );
             $("#joinbeta").hide();
         }
         $("#logo").hide();
