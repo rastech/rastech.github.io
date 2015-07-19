@@ -239,14 +239,5 @@ let s = n as String
 </description>
     </item>
     
-    <item>
-      <title></title>
-      <link>https://meta.sc/tech/startclean/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://meta.sc/tech/startclean/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>
