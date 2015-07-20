@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="An overview of the technical stack that we are using at Meta and a description of the motivations underlying those decisions">
-    <meta name="author" content="" />
+    <meta name="description" content="An overview of the technical stack that we are using at Meta and an analysis of the motivations underlying those decisions. ">
+    <meta name="author" content="Aaron Taylor" />
     <meta name="keywords" content="" />
     <meta property="og:title" content="Starting Clean" />
-    <meta property="og:url" content="http://localhost:1313/tech/startclean/" />
-    <meta property="og:image" content="" />
+    <meta property="og:url" content="https://meta.sc/tech/startclean/" />
+    <meta property="og:image" content="/images/blog/stack.png" />
     <meta property="og:image:width" content="1833">
     <meta property="og:image:height" content="917">
     <meta property="og:site_name" content="Meta - Smarter Search" />
-    <meta property="og:description" content="An overview of the technical stack that we are using at Meta and a description of the motivations underlying those decisions" />
+    <meta property="og:description" content="An overview of the technical stack that we are using at Meta and an analysis of the motivations underlying those decisions. " />
     <title>Meta Blog - Starting Clean</title>
     <link href="https://plus.google.com/114504566985694374874" rel="publisher">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -95,23 +95,81 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
                     <h2><a href="/tech/startclean/" class="headerlink">Starting Clean</a></h2>
                 </header>
                 <div class="infobox">
-                    <a href="#" class="postinfo authorlink">  </a>
+                    <a href="#" class="postinfo authorlink"> Aaron Taylor </a>
                     <span class="postinfo separator">|</span>
-                    <a href="#" class="postinfo datelink"> June 6, 2015 </a>
+                    <a href="#" class="postinfo datelink"> July 7, 2015 </a>
                     <span class="postinfo separator">|</span>
                     <a href="#" class="icon fa-comment postinfo commentlink"> </a>
                     <a class="postinfo commentlink" href="/tech/startclean/#disqus_thread"> 0 Comments </a>
                     <div class="socialMedia">
-                        <a href="#" class="icon fa-twitter postinfo" onclick="window.open('http://twitter.com/home?status=Starting Clean http:\/\/localhost:1313\/tech\/startclean\/', 'newwindow', 'width=400, height=400'); return false;"><span class="label">Twitter</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="#" class="icon fa-facebook postinfo" onclick="window.open('http://www.facebook.com/share.php?u=http:\/\/localhost:1313\/tech\/startclean\/', 'newwindow', 'width=550, height=400'); return false;"><span class="label">Facebook</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="#" class="icon fa-linkedin-square postinfo" class="icon fa-google-plus-square postinfo" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&amp;url=http:\/\/localhost:1313\/tech\/startclean\/&amp;title=Meta&amp;summary=&amp;source=', 'newwindow', 'width=400, height=400'); return false;"><span class="label">LinkedIn</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="#" class="icon fa-google-plus-square postinfo" onclick="window.open('https://plus.google.com/share?url=http:\/\/localhost:1313\/tech\/startclean\/', 'newwindow', 'width=400, height=400'); return false;"><span class="label">GPlus</span></a>
+                        <a href="#" class="icon fa-twitter postinfo" onclick="window.open('http://twitter.com/home?status=Starting Clean https:\/\/meta.sc\/tech\/startclean\/', 'newwindow', 'width=400, height=400'); return false;"><span class="label">Twitter</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="icon fa-facebook postinfo" onclick="window.open('http://www.facebook.com/share.php?u=https:\/\/meta.sc\/tech\/startclean\/', 'newwindow', 'width=550, height=400'); return false;"><span class="label">Facebook</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="icon fa-linkedin-square postinfo" class="icon fa-google-plus-square postinfo" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&amp;url=https:\/\/meta.sc\/tech\/startclean\/&amp;title=Meta&amp;summary=&amp;source=', 'newwindow', 'width=400, height=400'); return false;"><span class="label">LinkedIn</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="icon fa-google-plus-square postinfo" onclick="window.open('https://plus.google.com/share?url=https:\/\/meta.sc\/tech\/startclean\/', 'newwindow', 'width=400, height=400'); return false;"><span class="label">GPlus</span></a>
                     </div>
                 </div>
                 
                 <br>
 
                 
+                <h5>tl;dr Meta is built on a microservices architecture written primarily in Go for efficiency, and runs on Google App Engine for ease of deployment.</h5>
+                
+
+                
+
+<p>When we started off designing the cloud architecture for Meta in February of 2015, our starting point was a totally clean slate. We had a vision for the experience that we wanted to create and some requirements to go along with that, but no constraints from previously built technology or legacy infrastructure. While not an atypical position for a startup, we were uniquely positioned to choose a technology stack that fit our goals exactly while catering to the capabilities of our small team.</p>
+
+<h2 id="product-requirements:9849efcacdcb3a3ca94c1ee29050eb1c">Product Requirements</h2>
+
+<p>To begin building out a product that matched the vision we had for Meta, we first had to outline what was required to build our product. A good starting point for this was the interactions we envisioned for users. Firstly, users should be able to search for their files and get back highly relevant results. Additionally, our system  must be able to preform analysis on the content of files to extract meaningful tags and metadata facilitating organization and our search. Lastly, we must be able to open a user&rsquo;s files for them no matter the location of the file.</p>
+
+<p>Sitting at core of all this functionality is the ability to maintain centralized knowledge of where a user&rsquo;s files are at all times, and to keep that snapshot always up to date. This presents a situation that is a little different from the challenge faced by most products. Rather than determining the best way to define resources unique to our system, we had to determine the best way to represent externally defined resources across an immense variety of systems.</p>
+
+<p>Our technology choices in solving that slice of our problem will be the topic of this blog post, enumerating our choices for the technology that Meta is built on and the motivations underlying them.</p>
+
+<h2 id="formulating-an-architecture:9849efcacdcb3a3ca94c1ee29050eb1c">Formulating an Architecture</h2>
+
+<p>Boiling down the options for building a cloud application into a dichotomy, we had a choice between a monolith or microservices based architecture. Since we were starting our application from scratch trying to get to our minimum viable product starting out with a monolithic application had a certain appeal. We could punt on certain problems of scalability in order to focus on building something that works and can validate our idea with customers. Still looking at the future of such a system presented problems. The concept of a <a href="http://martinfowler.com/bliki/SacrificialArchitecture.html">sacrificial architecture</a> seemed like a painful transition to for a system that was as distributed in nature as ours, and when you have a system that interfaces with such a wide variety of inputs as ours, it is pretty much impossible to create anything truly monolithic since we are receiving information form so many sources.</p>
+
+<p>At the same time, implementing a true microservices based application incurs a significant development cost. Something that would otherwise be a simple function call turns into a network request, and a large number of APIs need to be well thought out and designed to encapsulate each piece of functionality in the system. Established companies such as the classic example of <a href="https://www.nginx.com/blog/microservices-at-netflix-architectural-best-practices/">Netflix</a> utilize hundreds of microservices to provide their services. Building an infrastructure with this amount of granularity from the start would be a fool hardy choice.</p>
+
+<p>Still we wanted to start off with an architecture that would facilitate an end result of this term. While our current system has only around a dozen separate services, building with the design principles of service oriented architectures in mind allows our application to be further subdivided in the future. Additionally, we were picking our technology stack in parallel with formulating our system architecture, so the flexibility to potentially mix and match programming languages was enticing.</p>
+
+<h2 id="surveying-language-choices:9849efcacdcb3a3ca94c1ee29050eb1c">Surveying Language Choices</h2>
+
+<p>One of our primary goals in the user experience for Meta is that your experience with our cloud based product should feel as fast and responsive as the interactions that you are used to on your local computer. In addition to influencing our choices for the app itself, this goal meant that changes that occur on your local machine should propagate through our system as quickly as possible. The system we are building is by nature eventually consistent. Files made to a user&rsquo;s computer locally will always take some amount of time to propagate up to the our UI, but those changes happen as quickly as possible, ideally fast enough for it to be perceived as instant.</p>
+
+<p>To facilitate reaching this goal, we needed to build our service based architecture on a programming language that was lightning fast by default. We needed to have a baseline of response times in the tens of milliseconds, not in the hundreds. Our focus for the core infrastructure was shifted away from dynamic languages and heavier duty frameworks and towards performance focused and more customizable technologies.</p>
+
+<h3 id="c-c:9849efcacdcb3a3ca94c1ee29050eb1c">C/C++</h3>
+
+<p>When thinking about performance critical languages C/C++ is probably the first thing that comes to mind. Developers are given precise and powerful control over the way that their application runs, and if done well the resulting applications are incredibly capable. Still, the gains over other possibilities didn&rsquo;t outweigh the massive increase in complexity and potential for bugs. C/C++ is not a great starting point to build a MVP cloud application.</p>
+
+<h3 id="java-scala:9849efcacdcb3a3ca94c1ee29050eb1c">Java/Scala</h3>
+
+<p>JVM based languages offer speed and efficiency while eschewing manual memory management and other headaches of lower level languages. They have a mature and powerful ecosystem to support their products. Furthermore, last summer a proof of concept for Meta had been built entirely in Scala, providing a code base that we could potentially leverage to speed up the development of our MVP. We actually did begin writing pieces of our application in Scala, but a few hiccups deterred us from pursuing it further. First of all, while the JVM is powerful, the complexity associated with deploying and tuning applications with complex build and dependency systems added unnecessary overhead. Secondly, hiring great Scala developers is hard. While immensely powerful and expressive, the time it takes for a developer to get up to speed is much larger than for certain alternatives. The deal breaker was a lack of support for up to date Java technologies on on our chosen Cloud Platform, which I&rsquo;ll get to shortly.</p>
+
+<h3 id="go:9849efcacdcb3a3ca94c1ee29050eb1c">Go!</h3>
+
+<p>Go is the new kid on the block. Several things about it seemed like a good for for us. First of all,</p>
+
+<h2 id="deployment-and-infrastructure:9849efcacdcb3a3ca94c1ee29050eb1c">Deployment and Infrastructure</h2>
+
+<p>I&rsquo;ve lost track of the time I&rsquo;ve spent on various project tinkering with server configuration files into the early hours of the morning, endeavoring to get some piece of infrastructure up and running or back online. While there newer options such as <a href="https://www.docker.com">Docker</a>, as well as tools like <a href="https://www.chef.io">Chef</a> and <a href="https://puppetlabs.com">Puppet</a> can make the configuration process much easier and more automated, there is still a hump to get over before they start paying dividends. Emerging technologies like <a href="http://nixos.org">NixOS</a>, a functional and declarative operating system, seemed exciting, but I wanted to ensure that we spent our scarce development time focusing on the problems unique to our product rather than ones of infrastructure.</p>
+
+<p>Given this desire, PaaS(platform as a service) offerings seemed quite appealing. Since we had chosen Go as our primary development language, supporting it was a key criteria. A number of PaaS offerings are available on this front, which we were evaluating in tandem. Heroku is a popular option, but while they provide a great ecosystem it&rsquo;s quite pricey, and past issues with performance of their system were worrisome.</p>
+
+<p>One platform coming into it&rsquo;s own was Google App Engine. Since Go came out of Google, support for that language seemed like it was on a good path (validated by it&rsquo;s <a href="https://groups.google.com/forum/#!topic/google-appengine-go/as9wUqT77YU">move to general availability</a> recently!). When we learned about a spectacular credits program they offered us for established startups, we decided to go with App Engine. The microservices based design of our application allowed us to alleviate concerns about vendor lock-in, since any migration could be executed piece by piece, and we could even split our infrastructure across providers if necessary.</p>
+
+<p>While we may move away from PaaS solutions to options that give us more control over our application in the future, by enabling us to focus all our mental energy on the core of our product, we are currently greatly enjoying the benefits of PaaS.</p>
+
+<h2 id="conclusions:9849efcacdcb3a3ca94c1ee29050eb1c">Conclusions</h2>
+
+<p>Choosing technology for an application is a difficult and often nebulous choice. There is no single right answer, so questions about ways to do things better can always be raised and are healthy for the growth of product. Still, it seems that about once a week I come across an article about how X tech company just moved away from Y heavy duty framework to Z, giving them massive performance gains and cost savings. Pleasantly, the &ldquo;Z&rdquo; is often Go, validating our initial choices to a degree. While our initial launch may have been slightly slowed down by our focus on building an application that scales effectively, we don&rsquo;t question that decision for a second. If you have confidence in a validated need for what you are building, start your product right and build your product right. Not something that can scale to millions of users tomorrow, but something that can grow and be expanded on by
+ your team to facilitate the growth of your company. At Meta, we&rsquo;re in the midst of roll out for our closed Beta and can&rsquo;t wait to see where our product and vision takes us.</p>
+
+<p>If the challenges we&rsquo;re facing interest you, check out our <a href="https://meta.sc">careers page</a> and drop us a line at <a href="mailto:careers@meta.sc">careers@meta.sc</a>. We&rsquo;re hiring in every area of software engineering.</p>
+
 
                 <div id="disqus_thread"></div>
                 <script type="text/javascript">
@@ -181,6 +239,6 @@ window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){va
     <script src="/js/prism.js"></script>
 <script data-no-instant>document.write('<script src="http://'
         + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
+		+ ':/livereload.js?mindelay=10"></'
         + 'script>')</script></body>
 </html>

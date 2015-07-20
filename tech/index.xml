@@ -18,8 +18,6 @@
       <guid>https://meta.sc/tech/swiftobjc/</guid>
       <description>
 
-&lt;h5 id=&#34;tl-dr-if-you-are-hitting-roadblocks-in-trying-to-communicate-with-core-foundation-and-c-apis-directly-from-swift-just-wrap-them-in-a-friendly-objective-c-class-that-provides-an-simple-api-for-the-rest-of-your-application-to-use:ed2493891a91270524d133e14b0956ee&#34;&gt;tl;dr If you are hitting roadblocks in trying to communicate with Core Foundation and C APIs directly from Swift, just wrap them in a friendly Objective-C class that provides an simple API for the rest of your application to use.&lt;/h5&gt;
-
 &lt;p&gt;&lt;img style=&#34;width:50%;position:relative;left:25%;&#34; src=&#34;https://meta.sc/images/blog/swift_logo.png&#34; alt=&#34;Meta Cloud&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;At Meta, most of the work that has gone into our client applications thus far facilitates keeping our user’s files in sync with our cloud system so that they can be easily searched and accessed. When we began work on the client application for Mac OS X a few months ago, there were two major decisions that had to be made. The first was how to organize the application so that a resilient background process could listen for file system changes and keep everything up to date in the cloud. I’ll likely be discussing that in a future post. The second decision was what language to base the project in, which I will be discussing here.&lt;/p&gt;
