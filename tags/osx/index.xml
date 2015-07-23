@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Osx on Meta - Smarter Search</title>
-    <link>https://meta.sc/tags/osx/</link>
+    <link>https://meta.sc/tags/osx.html</link>
     <description>Recent content in Osx on Meta - Smarter Search</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Meta</copyright>
     <lastBuildDate>Wed, 17 Jun 2015 12:20:38 -0400</lastBuildDate>
-    <atom:link href="https://meta.sc/tags/osx/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://meta.sc/tags/osx.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>OS X Engineer</title>
-      <link>https://meta.sc/careers/osx/</link>
+      <link>https://meta.sc/careers/osx.html</link>
       <pubDate>Wed, 17 Jun 2015 12:20:38 -0400</pubDate>
       
-      <guid>https://meta.sc/careers/osx/</guid>
+      <guid>https://meta.sc/careers/osx.html</guid>
       <description>&lt;p&gt;You write efficient, elegant, and testable Objective-C and Swift to a high standard, in a timely and scalable way. You’re familiar with CoreData, AFNetworking, File System Events, XPC Services, Background/Login Applications, Status Bar Items, Spotlight Integrations, Local and Remote Notifications, App Sandbox, and Accessibility requirements. Intimate familiarity with the latest design guidelines for OSX is highly desirable.&lt;/p&gt;
 </description>
     </item>

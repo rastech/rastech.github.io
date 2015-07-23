@@ -4,6 +4,14 @@
     padding-bottom: 1em;
 }
 
+button {
+    border-radius: 1px !important;
+}
+
+.button {
+    border-radius: 1px !important;
+}
+
 /* Navbar ----------------------------------------------------------------------------------*/
 
 .navbar {
@@ -1205,14 +1213,14 @@ input[type="button"]:disabled,
 #footer {
     background: white;
     color: black;
-    padding: 6em 0 1em 0;
+    padding: 2em 0 6em 0;
     position: relative;
     text-align: center;
 }
 #footer .container {
     color: black;
-    padding: 5em 2.5em 3em 2.5em;
-    background: rgba(255, 255, 255, 0.95);
+    padding: 5em 2.5em 2em 2.5em;
+    background: white;
     box-shadow: inset 0 1px 0 0 #dddddd;
 }
 #footer footer {
@@ -1254,4 +1262,27 @@ input[type="button"]:disabled,
     border-left: 0;
     margin-left: 0;
     padding-left: 0;
+}
+p {
+    color: rgba(0, 0, 0, 0.5) !important;
+}
+.container {
+    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+    padding-top: 5em !important;
+}
+#footer {
+    background: white;
+    color: black;
+    padding: 3em 0 7em 0 !important;
+    position: relative;
+    text-align: center;
+    box-shadow: none !important;
+    margin-bottom: 0 !important;
+}
+#footer .pageEnd {
+    padding: 5em 2.5em 4em 2.5em !important;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: none !important;
 }

@@ -1,4 +1,9 @@
 
+
+#demo {
+    width:200%;
+    margin-left: -50%;
+}
 /* iPads ----------------------------------------------------------------------------------*/
 
 @media only screen 
@@ -69,6 +74,14 @@ and (max-device-width : 667px) {
 }
 
 /* Custom ----------------------------------------------------------------------------------*/
+
+button {
+    border-radius: 1px !important;
+}
+
+.button {
+    border-radius: 1px !important;
+}
 
 #footer .container {
     margin-top: 5%;

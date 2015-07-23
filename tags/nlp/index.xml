@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nlp on Meta - Smarter Search</title>
-    <link>https://meta.sc/tags/nlp/</link>
+    <link>https://meta.sc/tags/nlp.html</link>
     <description>Recent content in Nlp on Meta - Smarter Search</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Meta</copyright>
     <lastBuildDate>Wed, 17 Jun 2015 12:44:07 -0400</lastBuildDate>
-    <atom:link href="https://meta.sc/tags/nlp/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://meta.sc/tags/nlp.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Search Engineer</title>
-      <link>https://meta.sc/careers/search/</link>
+      <link>https://meta.sc/careers/search.html</link>
       <pubDate>Wed, 17 Jun 2015 12:44:07 -0400</pubDate>
       
-      <guid>https://meta.sc/careers/search/</guid>
+      <guid>https://meta.sc/careers/search.html</guid>
       <description>&lt;p&gt;You know search algorithms and have applied them in a commercial setting. You can dive into elaborate datasets and architect the algorithms behind modern search. You are excited to use your mathematical and algorithmic background to help us fix file management.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Data Science Engineer</title>
-      <link>https://meta.sc/careers/analytics/</link>
+      <link>https://meta.sc/careers/analytics.html</link>
       <pubDate>Wed, 17 Jun 2015 12:44:15 -0400</pubDate>
       
-      <guid>https://meta.sc/careers/analytics/</guid>
+      <guid>https://meta.sc/careers/analytics.html</guid>
       <description>&lt;p&gt;You are excited by the underlying structure and patterns hidden within complex datasets. You discover valuable metrics and insights from low level user interaction data. You transform abstract ideas into scalable production systems. You have experience leveraging user data to increase the quality of search engines using modern information retrieval techniques.&lt;/p&gt;
 </description>
     </item>

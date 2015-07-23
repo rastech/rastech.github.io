@@ -12,20 +12,20 @@
     
     <item>
       <title>example</title>
-      <link>https://meta.sc/features/example/</link>
+      <link>https://meta.sc/features/example.html</link>
       <pubDate>Wed, 17 Jun 2015 15:05:28 -0400</pubDate>
       
-      <guid>https://meta.sc/features/example/</guid>
+      <guid>https://meta.sc/features/example.html</guid>
       <description>&lt;p&gt;This is a placeholder for features if we decide to have them generated rather than purely static&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Facilitating Idiomatic Swift with Objective-C</title>
-      <link>https://meta.sc/tech/swiftobjc/</link>
+      <link>https://meta.sc/tech/swiftobjc.html</link>
       <pubDate>Tue, 16 Jun 2015 09:38:02 -0400</pubDate>
       
-      <guid>https://meta.sc/tech/swiftobjc/</guid>
+      <guid>https://meta.sc/tech/swiftobjc.html</guid>
       <description>
 
 &lt;p&gt;&lt;img style=&#34;width:50%;position:relative;left:25%;&#34; src=&#34;https://meta.sc/images/blog/swift_logo.png&#34; alt=&#34;Meta Cloud&#34;&gt;&lt;/p&gt;
@@ -249,10 +249,10 @@ let s = n as String
     
     <item>
       <title>Introduction to Meta</title>
-      <link>https://meta.sc/blog/meta/</link>
+      <link>https://meta.sc/blog/meta.html</link>
       <pubDate>Mon, 01 Jun 2015 10:47:35 -0400</pubDate>
       
-      <guid>https://meta.sc/blog/meta/</guid>
+      <guid>https://meta.sc/blog/meta.html</guid>
       <description>&lt;p&gt;For those of you who have seen our website, you know what we promise; Meta will allow you to access any file in seconds, no matter where it’s stored. But what exactly is Meta?&lt;/p&gt;
 
 &lt;p&gt;Today, we’re pleased to give you a first glance!&lt;/p&gt;
@@ -280,10 +280,10 @@ let s = n as String
     
     <item>
       <title>Tips for Taming Your Inbox</title>
-      <link>https://meta.sc/blog/inboxtaming/</link>
+      <link>https://meta.sc/blog/inboxtaming.html</link>
       <pubDate>Wed, 13 May 2015 10:47:26 -0400</pubDate>
       
-      <guid>https://meta.sc/blog/inboxtaming/</guid>
+      <guid>https://meta.sc/blog/inboxtaming.html</guid>
       <description>&lt;p&gt;Are you frightened of opening your inbox? Do you receive dozens of emails each day? Does the sight of your email buildup make you physically ill? Does your phone vibrate nonstop, taunting you with the amount of emails you’ll have to deal with later? If you answered yes to any of the above, these handy email tips are for you!&lt;/p&gt;
 
 &lt;p&gt;&lt;img style=&#34;width:50%;position:relative;left:25%;&#34; src=&#34;https://meta.sc/images/blog/inbox.png&#34; alt=&#34;Cluttered Inbox&#34;/&gt;&lt;/p&gt;
@@ -346,10 +346,10 @@ let s = n as String
     
     <item>
       <title>5 Easy Tricks to Boost Your Productivity</title>
-      <link>https://meta.sc/blog/productivitytips/</link>
+      <link>https://meta.sc/blog/productivitytips.html</link>
       <pubDate>Wed, 06 May 2015 10:47:50 -0400</pubDate>
       
-      <guid>https://meta.sc/blog/productivitytips/</guid>
+      <guid>https://meta.sc/blog/productivitytips.html</guid>
       <description>&lt;p&gt;Here at Meta, we love being organized and productive! Sadly, this is easier said than done. But fear not! We’ve compiled some of our favorite tips and tricks to help you crush this week!&lt;/p&gt;
 &lt;img class=&#34;fullsize&#34; src=&#34;https://meta.sc/images/blog/organized.jpg&#34; alt=&#34;Organized Desktop&#34;&gt;
 &lt;p&gt;&lt;/p&gt;
@@ -386,10 +386,10 @@ let s = n as String
     
     <item>
       <title>Can&#39;t Find Your Files? You&#39;re Not Alone!</title>
-      <link>https://meta.sc/blog/notalone/</link>
+      <link>https://meta.sc/blog/notalone.html</link>
       <pubDate>Fri, 01 May 2015 10:35:23 -0400</pubDate>
       
-      <guid>https://meta.sc/blog/notalone/</guid>
+      <guid>https://meta.sc/blog/notalone.html</guid>
       <description>&lt;p&gt;How many times have you needed a document on your computer but couldn’t find it right away?&lt;/p&gt;
 
 &lt;p&gt;If you’re very meticulous about filing your documents in folders, maybe you opened the Finder or Windows Explorer and navigated to the correct folder. If you haven’t accessed the document in awhile, perhaps you clicked into the wrong folder at first. Or searched through Dropbox before realizing it was on Google Drive.&lt;/p&gt;
@@ -414,60 +414,60 @@ let s = n as String
     
     <item>
       <title>OS X Engineer</title>
-      <link>https://meta.sc/careers/osx/</link>
+      <link>https://meta.sc/careers/osx.html</link>
       <pubDate>Wed, 17 Jun 2015 12:20:38 -0400</pubDate>
       
-      <guid>https://meta.sc/careers/osx/</guid>
+      <guid>https://meta.sc/careers/osx.html</guid>
       <description>&lt;p&gt;You write efficient, elegant, and testable Objective-C and Swift to a high standard, in a timely and scalable way. You’re familiar with CoreData, AFNetworking, File System Events, XPC Services, Background/Login Applications, Status Bar Items, Spotlight Integrations, Local and Remote Notifications, App Sandbox, and Accessibility requirements. Intimate familiarity with the latest design guidelines for OSX is highly desirable.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Front End Engineer</title>
-      <link>https://meta.sc/careers/frontend/</link>
+      <link>https://meta.sc/careers/frontend.html</link>
       <pubDate>Wed, 17 Jun 2015 12:43:51 -0400</pubDate>
       
-      <guid>https://meta.sc/careers/frontend/</guid>
+      <guid>https://meta.sc/careers/frontend.html</guid>
       <description>&lt;p&gt;You write fast, beautiful JavaScript to create simple and powerful user experiences. You translate visual designs into fully working web pages, and edit the HTML, CSS, and Javascript for existing page templates. You build and work with high-performance, reusable code for UI components and your work is always modular and scaleable.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Back End Engineer</title>
-      <link>https://meta.sc/careers/backend/</link>
+      <link>https://meta.sc/careers/backend.html</link>
       <pubDate>Wed, 17 Jun 2015 12:43:59 -0400</pubDate>
       
-      <guid>https://meta.sc/careers/backend/</guid>
+      <guid>https://meta.sc/careers/backend.html</guid>
       <description>&lt;p&gt;You implement robust and scalable systems in distributed environments and enjoy finding simple solutions to complex problems. You have the ability to convert high level design goals into clear and specific implementation plans. You care deeply about the performance of the systems that you build.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Search Engineer</title>
-      <link>https://meta.sc/careers/search/</link>
+      <link>https://meta.sc/careers/search.html</link>
       <pubDate>Wed, 17 Jun 2015 12:44:07 -0400</pubDate>
       
-      <guid>https://meta.sc/careers/search/</guid>
+      <guid>https://meta.sc/careers/search.html</guid>
       <description>&lt;p&gt;You know search algorithms and have applied them in a commercial setting. You can dive into elaborate datasets and architect the algorithms behind modern search. You are excited to use your mathematical and algorithmic background to help us fix file management.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Data Science Engineer</title>
-      <link>https://meta.sc/careers/analytics/</link>
+      <link>https://meta.sc/careers/analytics.html</link>
       <pubDate>Wed, 17 Jun 2015 12:44:15 -0400</pubDate>
       
-      <guid>https://meta.sc/careers/analytics/</guid>
+      <guid>https://meta.sc/careers/analytics.html</guid>
       <description>&lt;p&gt;You are excited by the underlying structure and patterns hidden within complex datasets. You discover valuable metrics and insights from low level user interaction data. You transform abstract ideas into scalable production systems. You have experience leveraging user data to increase the quality of search engines using modern information retrieval techniques.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Jack of All Trades</title>
-      <link>https://meta.sc/careers/all/</link>
+      <link>https://meta.sc/careers/all.html</link>
       <pubDate>Wed, 17 Jun 2015 12:44:18 -0400</pubDate>
       
-      <guid>https://meta.sc/careers/all/</guid>
+      <guid>https://meta.sc/careers/all.html</guid>
       <description>&lt;p&gt;You may not see the perfect fit in our existing job descriptions, but you love our concept and want to be involved. You are excited about revolutionizing the way people interact with their files. Meta offers challenges in user experience design, marketing, consumer behavior, and nearly every area of software engineering. If you think you would be a good fit, we can’t wait to hear from you!&lt;/p&gt;
 </description>
     </item>
