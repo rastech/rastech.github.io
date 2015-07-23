@@ -257,7 +257,7 @@ let s = n as String
 
 &lt;p&gt;Today, we’re pleased to give you a first glance!&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&#34;width:50%;position:relative;left:25%;&#34; src=&#34;https://meta.sc/images/blog/intro_inverted.png&#34; alt=&#34;Meta Cloud&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img style=&#34;width:50%;position:relative;left:25%;&#34; src=&#34;https://meta.sc/images/blog/applogo.png&#34; alt=&#34;Meta Cloud&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;Meta is a one-of-a-kind web service that provides you with a single portal to all of your digital files, whether they’re stored in your Documents folder, Google Drive, Dropbox, or your email inbox. Plus, Meta automatically organizes all of your files for you so you can stay focused on what’s important.&lt;/p&gt;
 
