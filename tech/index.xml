@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Teches on Meta - Smarter Search</title>
-    <link>https://meta.sc/tech.html</link>
+    <link>https://meta.sc/tech/</link>
     <description>Recent content in Teches on Meta - Smarter Search</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Meta</copyright>
     <lastBuildDate>Tue, 16 Jun 2015 09:38:02 -0400</lastBuildDate>
-    <atom:link href="https://meta.sc/tech.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://meta.sc/tech/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Facilitating Idiomatic Swift with Objective-C</title>
-      <link>https://meta.sc/swiftobjc</link>
+      <link>https://meta.sc/tech/swiftobjc/</link>
       <pubDate>Tue, 16 Jun 2015 09:38:02 -0400</pubDate>
       
-      <guid>https://meta.sc/swiftobjc</guid>
+      <guid>https://meta.sc/tech/swiftobjc/</guid>
       <description>
 
 &lt;p&gt;&lt;img style=&#34;width:50%;position:relative;left:25%;&#34; src=&#34;https://meta.sc/images/blog/swift_logo.png&#34; alt=&#34;Meta Cloud&#34;&gt;&lt;/p&gt;

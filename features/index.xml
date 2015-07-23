@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Features on Meta - Smarter Search</title>
-    <link>https://meta.sc/features.html</link>
+    <link>https://meta.sc/features/</link>
     <description>Recent content in Features on Meta - Smarter Search</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Meta</copyright>
     <lastBuildDate>Wed, 17 Jun 2015 15:05:28 -0400</lastBuildDate>
-    <atom:link href="https://meta.sc/features.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://meta.sc/features/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>example</title>
-      <link>https://meta.sc/features/example.html</link>
+      <link>https://meta.sc/features/example/</link>
       <pubDate>Wed, 17 Jun 2015 15:05:28 -0400</pubDate>
       
-      <guid>https://meta.sc/features/example.html</guid>
+      <guid>https://meta.sc/features/example/</guid>
       <description>&lt;p&gt;This is a placeholder for features if we decide to have them generated rather than purely static&lt;/p&gt;
 </description>
     </item>

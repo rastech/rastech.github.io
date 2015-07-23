@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Distributed Systems on Meta - Smarter Search</title>
-    <link>https://meta.sc/tags/distributed-systems.html</link>
+    <link>https://meta.sc/tags/distributed-systems/</link>
     <description>Recent content in Distributed Systems on Meta - Smarter Search</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Meta</copyright>
     <lastBuildDate>Wed, 17 Jun 2015 12:43:59 -0400</lastBuildDate>
-    <atom:link href="https://meta.sc/tags/distributed-systems.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://meta.sc/tags/distributed-systems/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Back End Engineer</title>
-      <link>https://meta.sc/careers/backend.html</link>
+      <link>https://meta.sc/careers/backend/</link>
       <pubDate>Wed, 17 Jun 2015 12:43:59 -0400</pubDate>
       
-      <guid>https://meta.sc/careers/backend.html</guid>
+      <guid>https://meta.sc/careers/backend/</guid>
       <description>&lt;p&gt;You implement robust and scalable systems in distributed environments and enjoy finding simple solutions to complex problems. You have the ability to convert high level design goals into clear and specific implementation plans. You care deeply about the performance of the systems that you build.&lt;/p&gt;
 </description>
     </item>
