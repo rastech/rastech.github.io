@@ -3,8 +3,18 @@
   
   <url>
     <loc>https://meta.sc/</loc>
-    <lastmod>2015-06-17T15:05:28-04:00</lastmod>
+    <lastmod>2015-08-05T15:52:49-04:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://meta.sc/terms/</loc>
+    <lastmod>2015-08-05T15:52:49-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://meta.sc/privacy/</loc>
+    <lastmod>2015-08-05T15:52:23-04:00</lastmod>
   </url>
   
   <url>
