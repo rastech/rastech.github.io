@@ -651,8 +651,6 @@ agreements with all Contractors that require Contractors to use the Personal Inf
       <guid>https://meta.sc/tech/swiftobjc/</guid>
       <description>
 
-&lt;p&gt;&lt;img style=&#34;width:50%;position:relative;left:25%;&#34; src=&#34;https://meta.sc/images/blog/swift_logo.png&#34; alt=&#34;Meta Cloud&#34;&gt;&lt;/p&gt;
-
 &lt;p&gt;At Meta, most of the work that has gone into our client applications thus far facilitates keeping our user’s files in sync with our cloud system so that they can be easily searched and accessed. When we began work on the client application for Mac OS X a few months ago, there were two major decisions that had to be made. The first was how to organize the application so that a resilient background process could listen for file system changes and keep everything up to date in the cloud. I’ll likely be discussing that in a future post. The second decision was what language to base the project in, which I will be discussing here.&lt;/p&gt;
 
 &lt;p&gt;Since I was to be the primary developer of this application for the short term, this was partly a personal choice. While most of my experience in Apple&amp;rsquo;s world to date had been in writing Objective-C code, I had experimented with Swift and was excited to try it out in a production application. The were a few features in particular that I was attracted to in Swift.&lt;/p&gt;
