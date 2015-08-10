@@ -7,8 +7,70 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Meta</copyright>
-    <lastBuildDate>Tue, 16 Jun 2015 09:38:02 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jul 2015 03:01:25 -0400</lastBuildDate>
     <atom:link href="https://meta.sc/tech/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Starting Clean</title>
+      <link>https://meta.sc/tech/startclean/</link>
+      <pubDate>Sun, 19 Jul 2015 03:01:25 -0400</pubDate>
+      
+      <guid>https://meta.sc/tech/startclean/</guid>
+      <description>
+
+&lt;p&gt;When we started off designing the cloud architecture for Meta in February of 2015, it was with a totally clean slate. We had a vision for the experience that we wanted to create and requirements to go along with that, but no constraints from previously built technology or legacy infrastructure. While not an atypical position for a startup, we were thus positioned to choose a technology stack that fit our goals exactly while catering to the capabilities of our small team.&lt;/p&gt;
+
+&lt;h2 id=&#34;product-requirements:9849efcacdcb3a3ca94c1ee29050eb1c&#34;&gt;Product Requirements&lt;/h2&gt;
+
+&lt;p&gt;To begin building out a product that matched the vision we had for Meta, we first had to outline what was required to build our product. A good starting point for this was the interactions we envisioned for users. Firstly, users should be able to search for their files and get back highly relevant results. Additionally, our system  must be able to perform analysis on the content of files to extract meaningful tags and metadata facilitating organization and our search. Lastly, we must be able to open a user&amp;rsquo;s files for them no matter the location of the file.&lt;/p&gt;
+
+&lt;p&gt;Sitting at core of all this functionality is the ability to maintain centralized knowledge of where a user&amp;rsquo;s files are at all times, and to keep that snapshot always up to date. This presents a situation that is a little different from the challenge faced by most products. Rather than determining the best way to define resources unique to our system, we had to determine the best way to represent externally defined resources across an immense variety of systems.&lt;/p&gt;
+
+&lt;p&gt;Our technology choices in building out our core infrastructure to solve these problems will be the topic of this blog post, enumerating our choices for the technology that Meta is built on and the motivations underlying them.&lt;/p&gt;
+
+&lt;h2 id=&#34;formulating-an-architecture:9849efcacdcb3a3ca94c1ee29050eb1c&#34;&gt;Formulating an Architecture&lt;/h2&gt;
+
+&lt;p&gt;Boiling down the options for building a cloud application into a dichotomy, you have a choice between a monolith or microservices. Since we were starting our application from scratch with a goal of building out an MVP, starting with a monolithic application had a certain appealing features. We could punt on certain problems of scalability in order to focus on building something that works and then validate our idea with customers. Still, looking at the future of such a system presented problems. The concept of a &lt;a href=&#34;http://martinfowler.com/bliki/SacrificialArchitecture.html&#34;&gt;sacrificial architecture&lt;/a&gt; seemed like a painful transition for a system that was as distributed in nature as ours, and when you have a system that interfaces with such a wide variety of inputs as our does, it is pretty much impossible to create anything truly monolithic since we are receiving information form so many sources. Thus, even if we built a central monolith, we would still be working in a highly distributed environment, eroding some of the simplicity of a truly monolithic architecture.&lt;/p&gt;
+
+&lt;p&gt;At the same time, implementing microservices in the fullest sense incurs significant development cost. Something that would otherwise be a simple function call turns into a network request, and a large number of APIs need to be well designed to encapsulate each piece of functionality in the system. Established companies, such as the classic example of &lt;a href=&#34;https://www.nginx.com/blog/microservices-at-netflix-architectural-best-practices/&#34;&gt;Netflix&lt;/a&gt;, utilize hundreds of microservices to provide their services. Building an infrastructure with that amount of granularity from the start would be a bit foolish.&lt;/p&gt;
+
+&lt;p&gt;We wanted to start off with an architecture that would facilitate transitioning to true microservices. Our current system has around a dozen separate services, and building with the design principles of service oriented architectures in mind will allow our application to be further subdivided in the future. Additionally, we were picking our technology stack in parallel with formulating our system architecture, so the flexibility of microservices to mix and match programming languages to suit specific problems was enticing.&lt;/p&gt;
+
+&lt;h2 id=&#34;surveying-language-choices:9849efcacdcb3a3ca94c1ee29050eb1c&#34;&gt;Surveying Language Choices&lt;/h2&gt;
+
+&lt;p&gt;One of our primary goals for Meta&amp;rsquo;s UX is that our cloud based product should feel as fast and responsive as the interactions our customers are used to on a computer. In terms of our core architecture, this meant that changes occurring on your local machine should propagate through our system as quickly as possible. The system we are building is by nature eventually consistent; changes made to a files on user&amp;rsquo;s computer will always take some amount of time to propagate up to the our UI, but those changes must happen as quickly as possible, ideally fast enough for it to be perceived as instant.&lt;/p&gt;
+
+&lt;p&gt;To facilitate reaching this goal, we needed to build out our architecture on a programming language that was lightning fast by default. We needed to have a baseline of response times in the tens of milliseconds, not in the hundreds. Our focus for the core infrastructure was thus shifted away from dynamic languages and heavier duty frameworks and towards more customizable and performance focused technologies.&lt;/p&gt;
+
+&lt;h3 id=&#34;c-c:9849efcacdcb3a3ca94c1ee29050eb1c&#34;&gt;C/C++&lt;/h3&gt;
+
+&lt;p&gt;When thinking about performance critical languages, C/C++ is probably the first thing that comes to mind. Developers are given precise and powerful control over the way that their application runs, and if done well the resulting applications are incredibly capable and performant. Still, these gains over didn&amp;rsquo;t outweigh the increase in complexity and potential for bugs. C/C++ didn&amp;rsquo;t seem like a great starting point to build an MVP of a cloud system.&lt;/p&gt;
+
+&lt;h3 id=&#34;java-scala:9849efcacdcb3a3ca94c1ee29050eb1c&#34;&gt;Java/Scala&lt;/h3&gt;
+
+&lt;p&gt;JVM based languages offer speed and efficiency while eschewing manual memory management and other headaches of lower level languages. They have a mature and powerful ecosystem to support their products. Furthermore, during the summer of 2014 a proof of concept for Meta had been built out entirely in Scala, providing a code base that we could potentially leverage to speed up the development of our MVP. We actually did start off writing pieces of our application in Scala, but a few hiccups deterred us from pursuing it further. First of all, while the JVM is powerful, the complexity associated with deploying and tuning applications with complex build and dependency systems added overhead. Secondly, hiring great Scala developers is hard. While immensely powerful and expressive, the time it takes for a developer to get up to speed is much larger than for alternatives. The deal breaker was a lack of support for up to date Java technologies on on our chosen cloud platform, which I&amp;rsquo;ll get to shortly.&lt;/p&gt;
+
+&lt;h3 id=&#34;go:9849efcacdcb3a3ca94c1ee29050eb1c&#34;&gt;Go!&lt;/h3&gt;
+
+&lt;p&gt;Go is the new kid on the block. Several things about it seemed like a good for for us. First of all, its performance was on par with JVM based languages despite its young age. We were also attracted to its simplicity and focus on explicit behavior. As our system grows in complexity, being able to track down issues across code bases would be increasingly important, and thus being able to approach code written by others is a helpful aspect of the language. Tools like &lt;code&gt;go fmt&lt;/code&gt; help enforce a uniform style.&lt;/p&gt;
+
+&lt;p&gt;Additionally, Go is a simple language that can be learned in a matter of weeks, opening up our hiring requirements significantly. Still, that simplicity is not without costs. While some language features like higher order functions and the powerful concurrency primitives are top notch, there are areas where &lt;a href=&#34;http://yager.io/programming/go.html&#34;&gt;it is lacking&lt;/a&gt;. Ultimately though, for the class of problems we are working in, Go is a great fit for the core problems that we&amp;rsquo;re working on. We&amp;rsquo;ve been delighted with the language so far.&lt;/p&gt;
+
+&lt;h2 id=&#34;deployment-and-infrastructure:9849efcacdcb3a3ca94c1ee29050eb1c&#34;&gt;Deployment and Infrastructure&lt;/h2&gt;
+
+&lt;p&gt;I&amp;rsquo;ve lost track of the time I&amp;rsquo;ve spent on various projects tinkering with server configuration files into the early hours of the morning, endeavoring to get some piece of infrastructure up and running or back online. While options such as &lt;a href=&#34;https://www.docker.com&#34;&gt;Docker&lt;/a&gt;, and tools like &lt;a href=&#34;https://www.chef.io&#34;&gt;Chef&lt;/a&gt; and &lt;a href=&#34;https://puppetlabs.com&#34;&gt;Puppet&lt;/a&gt; can make this process easier and more automated, there is still a hump to get over before they start paying dividends. Some emerging technologies like &lt;a href=&#34;http://nixos.org&#34;&gt;NixOS&lt;/a&gt;, a functional and declarative operating system, seemed exciting, but I wanted to ensure that we spent our scarce development time focusing on the problems unique to our product rather than ones of infrastructure.&lt;/p&gt;
+
+&lt;p&gt;Given this desire, PaaS (platform as a service) offerings had a lot of appeal. Since we had chosen Go as our primary development language, supporting it was a key criteria. A number of PaaS offerings are available on this front which we were evaluating in tandem.&lt;/p&gt;
+
+&lt;p&gt;One platform coming into it&amp;rsquo;s own was Google App Engine. Since Go came out of Google, support for that language seemed like it was on a good path (validated by it&amp;rsquo;s &lt;a href=&#34;https://groups.google.com/forum/#!topic/google-appengine-go/as9wUqT77YU&#34;&gt;move to general availability&lt;/a&gt; recently!). When they offered us a spectacular credits program for established startups, we decided to go with App Engine. The microservices based design of our application allowed us to alleviate concerns about vendor lock-in, since any migration could be executed piece by piece and we could even split our infrastructure across providers if deemed necessary. While we may move away from PaaS solutions to options that give us more control over our application in the future, the ability to focus all our mental energy on the core of our product has been immensely valuable.&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusions:9849efcacdcb3a3ca94c1ee29050eb1c&#34;&gt;Conclusions&lt;/h2&gt;
+
+&lt;p&gt;Choosing technology for an application is a difficult and often nebulous choice. There is no single right answer so questions about ways to do things better can always be raised and are healthy for the growth of product. Still, it seems that about once a week I come across an article about how X tech company just moved away from Y heavy duty framework to Z, giving them massive performance gains and cost savings. Pleasantly, the &amp;ldquo;Z&amp;rdquo; is often Go, validating our initial choices to a degree. While our initial launch may have been slightly slowed down by our focus on building a service based application that can scale effectively, we haven&amp;rsquo;t questioned that decision for a second. If you have confidence in a validated need for what you are building, start your product right and build your out a scalable architecture. Not something that can scale to millions of users tomorrow, but something that can grow and be expanded on by your team to facilitate the growth of your company. At Meta, we&amp;rsquo;re in the midst of roll out for our closed Beta and can&amp;rsquo;t wait to see where our platform can take us.&lt;/p&gt;
+
+&lt;p&gt;If the challenges we&amp;rsquo;re facing interest you, check out our &lt;a href=&#34;https://meta.sc&#34;&gt;careers page&lt;/a&gt; and drop us a line at &lt;a href=&#34;mailto:careers@meta.sc&#34;&gt;careers@meta.sc&lt;/a&gt;. We&amp;rsquo;re hiring in every area of software engineering.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Facilitating Idiomatic Swift with Objective-C</title>
